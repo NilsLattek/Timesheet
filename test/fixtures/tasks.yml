@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+TaskDevelopment:
+  name: Development
+  project: MyProject
+  estimated_effort: 4.5
+
+TaskTesting:
+  name: Testing
+  project: MyProject
+  estimated_effort: 3

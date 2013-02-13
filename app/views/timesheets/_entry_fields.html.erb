@@ -1,0 +1,9 @@
+<div class="control-group nested-fields">
+  <%= f.label :task_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.grouped_collection_select :task_id, Project.all, :tasks, :name, :id, :name %>
+    <%= f.number_field :hours, :class => 'number_field', :step => 'any' %> h
+    <%= f.text_field :description, :class => 'text_field' %>
+    <%= link_to_remove_association "Remove entry", f %>
+  </div>
+</div>

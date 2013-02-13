@@ -1,0 +1,35 @@
+<%= form_for @task, :url => url,
+                    :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_messages %>
+  
+  <div class="control-group">
+    <%= f.label :project_name, :class => 'control-label' %>
+    <div class="controls">
+      <input type="text" id="project_name" value="<%= @task.project.name %>" readonly="readonly" />
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group, hide">
+    <%= f.label :project_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :project_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :estimated_effort, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :estimated_effort, :class => 'number_field', :step => 'any' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_path(@task.project), :class => 'btn' %>
+  </div>
+<% end %>

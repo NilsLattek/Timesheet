@@ -1,0 +1,20 @@
+<%- model_class = Entry.new.class -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:task_id) %></th>
+      <th><%= model_class.human_attribute_name(:hours) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @timesheet.entries.each do |entry| %>
+      <tr>
+        <td><%= entry.task.project.name %> - <%= entry.task.name %></td>
+        <td><%= entry.hours %></td>
+        <td><%= entry.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

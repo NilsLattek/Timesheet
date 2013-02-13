@@ -1,0 +1,42 @@
+<%= form_for @timesheet, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.error_messages %>
+
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :date, :type => 'date' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :end_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :end_time, :type => 'time', :value => @timesheet.end_time ? @timesheet.end_time.strftime('%H:%M') : '' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :lunch_break, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :lunch_break, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <%= f.fields_for :entries do |entry| %>
+    <%= render "entry_fields", :f => entry %>
+  <% end %>
+  <div class="control-group">
+    <%= link_to_add_association 'Add entry', f, :entries %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                timesheets_path, :class => 'btn' %>
+  </div>
+<% end %>

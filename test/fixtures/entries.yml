@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+completeDay:
+  hours: 8
+  task: TaskDevelopment
+  timesheet: 
+  description: MyString
+
+two:
+  hours: 1.5
+  task: 
+  timesheet: 
+  description: MyString
