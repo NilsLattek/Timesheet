@@ -76,6 +76,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.6.0)
+    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -154,6 +155,7 @@ DEPENDENCIES
   dynamic_form
   jquery-rails
   less-rails
+  mysql2
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
   sqlite3
