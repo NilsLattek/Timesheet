@@ -36,11 +36,9 @@ class Timesheet < ActiveRecord::Base
   end
 
   def hours_worked
-    if !start_time || !end_time
+    if !start_time || !end_time || !lunch_break
       return 0
     end
-
-    #lunch_break = 0 if not lunch_break
 
     diff_minutes = (end_time - start_time) / 60
     diff_minutes -= lunch_break

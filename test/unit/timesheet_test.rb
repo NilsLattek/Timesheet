@@ -75,4 +75,17 @@ class TimesheetTest < ActiveSupport::TestCase
 
     assert !timesheet.save
   end
+
+  test "should not save when there is no lunch break" do
+    timesheet = Timesheet.new({
+      :date => Date.new,
+      :start_time => Time.new(2012, 01, 17, 9, 0, 0),
+      :end_time => Time.new(2012, 01, 17, 17, 0, 0),
+      :lunch_break => '' })
+
+    timesheet.entries.build({ :hours => 8, :description => 'My work', :task_id => '1'})
+
+    assert !timesheet.save
+    assert_equal 1, timesheet.errors[:lunch_break].length
+  end
 end
