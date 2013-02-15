@@ -29,7 +29,7 @@ class Timesheet < ActiveRecord::Base
 
         sum + entry.hours
       }
-      errors.add("entries", "do not cover your complete work day") if entry_hours != hours
+      errors.add("entries", "cannot exceed working hours") if entry_hours > hours
     else
       errors.add("hours_worked", "you have not worked a minute")
     end
