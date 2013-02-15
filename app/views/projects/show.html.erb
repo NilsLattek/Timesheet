@@ -6,10 +6,21 @@
   <%= @project.name %>
 </p>
 
-<p>
-  <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
-  <%= @project.estimated_effort %>
-</p>
+<div class="row">
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
+      <%= @project.estimated_effort %>
+    </p>
+  </div>
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:actual_hours) %>:</strong><br>
+      <%= @project.actual_hours %>
+    </p>
+  </div>
+</div>
+
 <p>
 <strong><%=t '.title', :default => Task.new.class.model_name.human.pluralize %>:</strong>
 <%= render :partial => 'tasks' %>

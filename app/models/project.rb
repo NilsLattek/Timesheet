@@ -9,4 +9,9 @@ class Project < ActiveRecord::Base
   def estimated_effort
     self.tasks.reduce(0) { |sum, task| sum + task.estimated_effort }
   end
+
+  def actual_hours
+    task_ids = self.tasks.map { |task| task.id }
+    Entry.where(:task_id => task_ids).sum('hours')
+  end
 end
