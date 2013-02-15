@@ -11,7 +11,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -20,7 +19,6 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr data-link="<%= project_path(project) %>">
-        <td><%= link_to project.id, project_path(project) %></td>
         <td><%= project.name %></td>
         <td><%=l project.created_at %></td>
         <td>
