@@ -3,7 +3,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:estimated_effort) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -12,7 +11,6 @@
   <tbody>
     <% @project.tasks.each do |task| %>
       <tr data-link="<%= project_task_path(@project, task) %>">
-        <td><%= link_to task.id, project_task_path(@project, task) %></td>
         <td><%= task.name %></td>
         <td><%= task.estimated_effort %></td>
         <td>
