@@ -29,8 +29,10 @@ class Ability
 
     if user.has_role? :admin
       can :manage, :all
-    else
-      can :manage, Timesheet, :user_id => user.id
+    elsif user.has_role? :manager
+      can :manage, Project
     end
+
+    can :manage, Timesheet, :user_id => user.id
   end
 end
