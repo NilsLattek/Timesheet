@@ -6,7 +6,7 @@ class TimesheetsController < ApplicationController
   # GET /timesheets
   # GET /timesheets.json
   def index
-    @timesheets = @timesheets.paginate(:page => params[:page], :per_page => 10)
+    @timesheets = @timesheets.order('date DESC').paginate(:page => params[:page], :per_page => 10)
 
   end
 
@@ -15,7 +15,7 @@ class TimesheetsController < ApplicationController
   def weekly
     #@week = Date.strptime(params[:week], '%W')
     @week = Date.commercial(params[:year].to_i, params[:week].to_i)
-    @timesheets = @timesheets.where(:date => (@week.beginning_of_week)..(@week.end_of_week))
+    @timesheets = @timesheets.where(:date => (@week.beginning_of_week)..(@week.end_of_week)).order('date DESC')
     @hours_worked = @timesheets.inject(0){|sum, item| sum + item.hours_worked}
 
     respond_with(@timesheets) do |format|
