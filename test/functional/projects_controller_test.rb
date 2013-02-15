@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
-  
+
   setup do
     sign_in users(:admin)
 
@@ -37,8 +37,8 @@ class ProjectsControllerTest < ActionController::TestCase
 
     project = assigns(:project)
     task = project.tasks.first
-    # first row and first column should include the link to the first task
-    assert_select 'table tr:first-child td:first-child a[href=?]', project_task_path(project, task)
+    # first row and first column should include the name to the first task
+    assert_select 'table tr:first-child td:first-child', task.name
   end
 
   test "should get edit" do
