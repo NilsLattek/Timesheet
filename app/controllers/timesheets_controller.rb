@@ -33,6 +33,8 @@ class TimesheetsController < ApplicationController
   # GET /timesheets/new
   # GET /timesheets/new.json
   def new
+    @timesheet.date = Date.today
+    @timesheet.lunch_break = 30
     @timesheet.entries.build
 
   end
