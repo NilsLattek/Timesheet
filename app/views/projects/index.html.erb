@@ -12,7 +12,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:estimated_effort) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -20,7 +20,7 @@
     <% @projects.each do |project| %>
       <tr data-link="<%= project_path(project) %>">
         <td><%= project.name %></td>
-        <td><%=l project.created_at %></td>
+        <td><%= project.estimated_effort %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_project_path(project), :class => 'btn btn-mini' %>
