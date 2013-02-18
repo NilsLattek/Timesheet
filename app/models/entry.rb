@@ -5,4 +5,11 @@ class Entry < ActiveRecord::Base
 
   validates :description, :hours, :task_id, :presence => true
   validates_numericality_of :hours
+
+  def editable?
+    # new entry, not assigned to any task
+    return true if not task.present?
+
+    !task.project.finished
+  end
 end

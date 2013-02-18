@@ -3,11 +3,23 @@
 completeDay:
   hours: 8
   task: TaskDevelopment
-  timesheet: 
+  timesheet:
   description: MyString
 
 two:
   hours: 1.5
-  task: 
-  timesheet: 
+  task:
+  timesheet:
   description: MyString
+
+activeEntry:
+  hours: 2
+  task: TaskDevelopment
+  timesheet: employeeTimesheet
+  description: Testing
+
+finishedEntry:
+  hours: 2
+  task: FinishedProjectTask
+  timesheet: employeeTimesheet
+  description: Fixed some bugs

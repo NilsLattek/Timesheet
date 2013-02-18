@@ -18,4 +18,10 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal 5, project.actual_hours
   end
+
+  test "should return only active projects" do
+    projects = Project.active
+    assert_equal 1, projects.length
+    assert_equal 'MyProject', projects[0].name
+  end
 end

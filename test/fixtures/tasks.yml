@@ -9,3 +9,8 @@ TaskTesting:
   name: Testing
   project: MyProject
   estimated_effort: 3
+
+FinishedProjectTask:
+  name: Finished task
+  project: FinishedProject
+  estimated_effort: 5

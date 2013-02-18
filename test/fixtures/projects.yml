@@ -3,5 +3,6 @@
 MyProject:
   name: MyProject
 
-AnotherProject:
-  name: AnotherProject
+FinishedProject:
+  name: Finished Project
+  finished: true

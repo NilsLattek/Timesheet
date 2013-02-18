@@ -6,6 +6,8 @@ class Project < ActiveRecord::Base
 
   has_many :tasks
 
+  scope :active, -> { where(:finished => false) }
+
   def estimated_effort
     self.tasks.reduce(0) { |sum, task| sum + task.estimated_effort }
   end
