@@ -1,10 +1,20 @@
 <%- model_class = @project.class -%>
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
-<p>
-  <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
-  <%= @project.name %>
-</p>
+<div class="row">
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
+      <%= @project.name %>
+    </p>
+  </div>
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:finished) %>:</strong><br>
+      <%=t @project.finished?.to_s %>
+    </p>
+  </div>
+</div>
 
 <div class="row">
   <div class="span6">

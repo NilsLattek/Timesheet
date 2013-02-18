@@ -12,6 +12,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:finished) %></th>
       <th><%= model_class.human_attribute_name(:estimated_effort) %></th>
       <th><%= model_class.human_attribute_name(:actual_hours) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -21,6 +22,7 @@
     <% @projects.each do |project| %>
       <tr data-link="<%= project_path(project) %>">
         <td><%= project.name %></td>
+        <td><%=t project.finished?.to_s %></td>
         <td><%= project.estimated_effort %></td>
         <td><%= project.actual_hours %></td>
         <td>

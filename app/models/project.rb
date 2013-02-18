@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :finished
 
   validates :name, :presence => true,
                    :length => { :minimum => 5 }

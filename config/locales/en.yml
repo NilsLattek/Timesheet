@@ -3,6 +3,8 @@
 
 en:
   hello: "Hello world"
+  'true': "Yes"
+  'false': "No"
 
   date:
     formats:
