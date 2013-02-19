@@ -19,3 +19,4 @@
 
 config/database.yml
 config/deploy/production.rb
+app/views/timesheets/index.print.erb

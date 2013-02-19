@@ -53,7 +53,7 @@ header, table, .sum, footer {
 <h1>ARBEITSZEITNACHWEIS</h1>
 
 <div class="logo">
-  <%= image_tag 'logo.png' %>
+  <%= image_tag 'rails.png' %>
 </div>
 
 <div class="contact">
