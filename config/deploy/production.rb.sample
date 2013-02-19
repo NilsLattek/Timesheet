@@ -51,8 +51,18 @@ namespace :deploy do
 
   desc "Symlinks the database.yml"
   task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
+
+  desc "Symlinks the timesheet print template"
+  task :symlink_print_template, :roles => :app do
+    run "ln -nfs #{shared_path}/templates/index.print.erb #{release_path}/app/views/timesheets/index.print.erb"
+  end
+
+  desc "Symlinks the company logo"
+  task :symlink_logo, :roles => :app do
+    run "ln -nfs #{shared_path}/templates/logo.png #{release_path}/app/assets/images/logo.png"
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_db'
+before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_print_template', 'deploy:symlink_logo'
