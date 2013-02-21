@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   load_and_authorize_resource
-  
+
   # GET /projects
   # GET /projects.json
   def index
+    @projects = @projects.order('name')
 
     respond_to do |format|
       format.html # index.html.erb
