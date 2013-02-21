@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215155710) do
+ActiveRecord::Schema.define(:version => 20130221080143) do
 
   create_table "entries", :force => true do |t|
-    t.float    "hours"
+    t.decimal  "hours",        :precision => 4, :scale => 2
     t.integer  "task_id"
     t.integer  "timesheet_id"
     t.string   "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "entries", ["task_id"], :name => "index_entries_on_task_id"
