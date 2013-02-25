@@ -26,6 +26,12 @@
       <%= f.number_field :lunch_break, :class => 'number_field' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :hours_worked, :class => 'control-label' %>
+    <div class="controls">
+      <span id="hours_worked" class="uneditable-input"><%= @timesheet.hours_worked %></span>
+    </div>
+  </div>
 
   <%= f.fields_for :entries do |entry| %>
     <%= render "entry_fields", :f => entry %>
