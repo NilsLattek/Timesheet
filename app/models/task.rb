@@ -6,4 +6,8 @@ class Task < ActiveRecord::Base
                    :length => { :minimum => 5 }
 
   validates :estimated_effort, :presence => true
+
+  def actual_hours
+    Entry.where(:task_id => self.id).sum('hours')
+  end
 end

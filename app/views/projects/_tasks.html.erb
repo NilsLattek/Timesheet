@@ -5,6 +5,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:estimated_effort) %></th>
+      <th><%= model_class.human_attribute_name(:actual_hours) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
       <tr data-link="<%= project_task_path(@project, task) %>">
         <td><%= task.name %></td>
         <td><%= task.estimated_effort %></td>
+        <td><%= task.actual_hours %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_project_task_url(@project, task), :class => 'btn btn-mini' %>

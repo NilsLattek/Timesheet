@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   test "should set default value for estimated effort to 0" do
     task = Task.new
     assert !task.valid?
@@ -14,5 +10,10 @@ class TaskTest < ActiveSupport::TestCase
 
     task.estimated_effort = 1
     assert task.valid?
+  end
+
+  test "should calculate the actual hours for this task" do
+    task = tasks(:TaskDevelopment)
+    assert_equal 10, task.actual_hours
   end
 end
