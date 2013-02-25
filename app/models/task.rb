@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
+  has_many :entries
   attr_accessible :name, :project_id, :estimated_effort
 
   validates :name, :presence => true,
@@ -8,6 +9,6 @@ class Task < ActiveRecord::Base
   validates :estimated_effort, :presence => true
 
   def actual_hours
-    Entry.where(:task_id => self.id).sum('hours')
+    self.entries.sum('hours')
   end
 end

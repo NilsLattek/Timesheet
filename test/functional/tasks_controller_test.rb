@@ -32,6 +32,9 @@ class TasksControllerTest < ActionController::TestCase
   test "should show task" do
     get :show, id: @task, project_id: @project.id
     assert_response :success
+
+    # should show entries for this task
+    assert_select 'table tr', {:count => 2}
   end
 
   test "should get edit" do

@@ -1,0 +1,22 @@
+<%- model_class = Entry.new.class -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:user) %></th>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%= model_class.human_attribute_name(:hours) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.timesheet.user.username %></td>
+        <td><%=l entry.timesheet.date %></td>
+        <td><%= entry.hours %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= page_navigation_links @entries %>

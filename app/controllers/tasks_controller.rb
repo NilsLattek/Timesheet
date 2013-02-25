@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @entries = @task.entries.joins(:timesheet).order('date DESC').paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-    
+
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task.project, notice: 'Task was successfully created.' }

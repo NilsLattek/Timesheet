@@ -13,6 +13,15 @@
   <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
   <%= @task.estimated_effort %>
 </p>
+<p>
+  <strong><%= model_class.human_attribute_name(:actual_hours) %>:</strong><br>
+  <%= @task.actual_hours %>
+</p>
+
+<p>
+<strong><%=t '.title', :default => Entry.new.class.model_name.human.pluralize %>:</strong>
+<%= render :partial => 'entries' %>
+</p>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
