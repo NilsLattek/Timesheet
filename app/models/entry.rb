@@ -4,7 +4,7 @@ class Entry < ActiveRecord::Base
   attr_accessible :description, :hours, :task_id
 
   validates :description, :hours, :task_id, :presence => true
-  validates_numericality_of :hours
+  validates_numericality_of :hours, :greater_than_or_equal_to => 0
 
   def editable?
     # new entry, not assigned to any task

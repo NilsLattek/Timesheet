@@ -14,4 +14,13 @@ class EntryTest < ActiveSupport::TestCase
     entry.task = task
     assert !entry.editable?
   end
+
+  test "should not allow negative hours" do
+    entry = entries(:activeEntry)
+    entry.hours = -4
+    assert !entry.valid?
+
+    entry.hours = 0
+    assert entry.valid?
+  end
 end
