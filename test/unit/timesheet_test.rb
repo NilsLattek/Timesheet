@@ -39,6 +39,13 @@ class TimesheetTest < ActiveSupport::TestCase
     assert_equal 0, timesheet.hours_worked
   end
 
+  test "should round hours_worked" do
+    timesheet = Timesheet.new({ date: Date.new, lunch_break: 0})
+    timesheet.start_time = Time.new(2012, 01, 17, 17, 4, 0)
+    timesheet.end_time = Time.new(2012, 01, 17, 20, 18, 0)
+    assert_equal 3.23, timesheet.hours_worked
+  end
+
   test "should not save if entry_hours exceeds hours_worked" do
     timesheet = timesheets(:one)
     entry = entries(:completeDay)

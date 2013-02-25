@@ -42,6 +42,6 @@ class Timesheet < ActiveRecord::Base
 
     diff_minutes = (end_time - start_time) / 60
     diff_minutes -= lunch_break
-    (diff_minutes / 60)
+    (diff_minutes / 60).round 2
   end
 end
