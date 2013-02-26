@@ -2,14 +2,24 @@
 <div class="row">
   <div class="span10">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-    <h5><%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></h5>
   </div>
   <div class="span2">
     <%= render :partial => 'navigation' %>
   </div>
 </div>
 
-<%= render :partial => 'timesheet_table' %>
+<div class="row">
+    <div class="span9">
+      <%= render :partial => 'timesheet_table' %>
+    </div>
+    <div class="span3">
+      <div class="well well-small">
+        <b><%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></b>
+        <div>Hours worked: <%= @hours_worked %></div>
+      </div>
+    </div>
+  </div>
+
 
 <ul class="pager">
   <li class="previous">
