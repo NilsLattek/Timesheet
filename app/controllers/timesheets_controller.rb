@@ -78,7 +78,7 @@ class TimesheetsController < ApplicationController
     @timesheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to timesheets_url }
+      format.html { redirect_to weekly_timesheets_path(Date.today.year, Date.today.cweek) }
       format.json { head :no_content }
     end
   end

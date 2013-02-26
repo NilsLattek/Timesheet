@@ -21,7 +21,7 @@
         <div class="nav-collapse">
           <ul class="nav">
             <% if can? :manage, Timesheet %>
-              <li><%= link_to "Home", timesheets_path %></li>
+              <li><%= link_to "Home", weekly_timesheets_path(Date.today.year, Date.today.cweek) %></li>
             <% end %>
             <% if can? :manage, Project %>
               <li><%= link_to "Projects", projects_path %></li>

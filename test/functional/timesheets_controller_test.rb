@@ -70,6 +70,6 @@ class TimesheetsControllerTest < ActionController::TestCase
       delete :destroy, id: @timesheet
     end
 
-    assert_redirected_to timesheets_path
+    assert_redirected_to weekly_timesheets_path(Date.today.year, Date.today.cweek)
   end
 end

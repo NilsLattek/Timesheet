@@ -43,6 +43,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                timesheets_path, :class => 'btn' %>
+                weekly_timesheets_path(Date.today.year, Date.today.cweek), :class => 'btn' %>
   </div>
 <% end %>

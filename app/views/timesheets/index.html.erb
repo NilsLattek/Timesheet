@@ -6,7 +6,7 @@
       <li class="<%= 'active' if current_page?(:action => 'index') %>">
         <%= link_to 'All', timesheets_path %>
       </li>
-      <li class="<%= 'active' if @week and current_page?(:action => 'weekly', :year => @week.year, :week => @week.cweek) %>">
+      <li class="<%= 'active' if @week and current_page?(weekly_timesheets_path(@week.year, @week.cweek)) %>">
         <%= link_to 'CW', weekly_timesheets_path(DateTime.now.year, DateTime.now.cweek) %>
       </li>
     </ul>
@@ -47,8 +47,7 @@
   </tbody>
 </table>
 
-
-<% if @week and current_page?(:action => 'weekly', :year => @week.year, :week => @week.cweek) %>
+<% if @week and current_page?(weekly_timesheets_path(@week.year, @week.cweek)) %>
   <ul class="pager">
     <li class="previous">
       <%= link_to '← Older', weekly_timesheets_path(@week.prev_week.year, @week.prev_week.cweek) %>
