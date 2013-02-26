@@ -1,6 +1,9 @@
 <%- model_class = Timesheet.new.class -%>
 <div class="row">
-  <div class="span10"><h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1></div>
+  <div class="span10">
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+    <h5><%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></h5>
+  </div>
   <div class="span2">
     <%= render :partial => 'navigation' %>
   </div>
