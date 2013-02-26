@@ -1,0 +1,26 @@
+<%- model_class = Timesheet.new.class -%>
+<div class="row">
+  <div class="span10"><h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1></div>
+  <div class="span2">
+    <%= render :partial => 'navigation' %>
+  </div>
+</div>
+
+<%= render :partial => 'timesheet_table' %>
+
+<ul class="pager">
+  <li class="previous">
+    <%= link_to '← Older', weekly_timesheets_path(@week.prev_week.year, @week.prev_week.cweek) %>
+  </li>
+  <li class="next">
+    <%= link_to 'Newer →', weekly_timesheets_path(@week.next_week.year, @week.next_week.cweek) %>
+  </li>
+</ul>
+<%= link_to(weekly_timesheets_path(@week.year, @week.cweek, :format => :print), :class => 'btn') do %>
+  <i class="icon-print"></i> Print
+<% end %>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_timesheet_path,
+            :class => 'btn btn-primary' %>
+

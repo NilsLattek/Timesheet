@@ -1,0 +1,8 @@
+<ul class="nav nav-pills">
+  <li class="<%= 'active' if current_page?(:action => 'index') %>">
+    <%= link_to 'All', timesheets_path %>
+  </li>
+  <li class="<%= 'active' if @week and current_page?(weekly_timesheets_path(@week.year, @week.cweek)) %>">
+    <%= link_to 'CW', weekly_timesheets_path(DateTime.now.year, DateTime.now.cweek) %>
+  </li>
+</ul>

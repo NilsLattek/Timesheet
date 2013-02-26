@@ -19,7 +19,7 @@ class TimesheetsController < ApplicationController
     @hours_worked = @timesheets.inject(0){|sum, item| sum + item.hours_worked}
 
     respond_with(@timesheets) do |format|
-      format.html { render :action => 'index' }
+      format.html
       format.print { render :action => 'index', :layout => false }
     end
   end
