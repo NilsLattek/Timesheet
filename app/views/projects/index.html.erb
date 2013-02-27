@@ -1,12 +1,6 @@
 <%- model_class = Project.new.class -%>
 <div class="row">
-  <div class="span10"><h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1></div>
-  <div class="span2">
-    <div class="btn-group">
-      <a href="#" class="btn"><i class="icon-align-justify"></i></a>
-      <a href="#" class="btn"><i class="icon-th"></i></a>
-    </div>
-  </div>
+  <div class="span12"><h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1></div>
 </div>
 <table class="table table-striped">
   <thead>
