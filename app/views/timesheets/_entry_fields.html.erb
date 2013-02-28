@@ -1,11 +1,19 @@
+<%- model_class = Entry.new.class -%>
 <div class="control-group nested-fields">
-  <%= f.label :task_id, :class => 'control-label' %>
+  <%= f.label :task_id, :class => 'control-label' do %>
+    Task (<%= link_to_remove_association "Remove", f %>)
+  <% end %>
   <div class="controls">
     <% if f.object.editable? %>
       <%= f.grouped_collection_select :task_id, Project.active, :tasks, :name, :id, :name %>
-      <%= f.number_field :hours, :class => 'number_field', :step => 'any' %> h
-      <%= f.text_field :description, :class => 'text_field' %>
-      <%= link_to_remove_association "Remove entry", f %>
+      <div class="input-prepend">
+        <span class="add-on"><%= model_class.human_attribute_name(:hours) %></span>
+        <%= f.number_field :hours, :class => 'number_field input-mini', :step => 'any' %>
+      </div>
+      <div class="input-prepend">
+        <span class="add-on"><%= model_class.human_attribute_name(:description) %></span>
+        <%= f.text_field :description, :class => 'text_field' %>
+      </div>
     <% else %>
       <%= f.object.task.project.name %> - <%= f.object.task.name %>: <%= f.object.hours %> <%= f.object.description %>
     <% end %>
