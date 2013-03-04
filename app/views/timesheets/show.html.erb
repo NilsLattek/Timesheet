@@ -37,7 +37,7 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              weekly_timesheets_path(Date.today.year, Date.today.cweek), :class => 'btn'  %>
+              weekly_timesheets_path(@timesheet.date.year, @timesheet.date.cweek), :class => 'btn'  %>
 
   <% if can? :edit, @timesheet %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
