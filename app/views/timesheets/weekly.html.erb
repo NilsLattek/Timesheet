@@ -29,7 +29,7 @@
     <%= link_to 'Newer →', weekly_timesheets_path(@week.next_week.year, @week.next_week.cweek) %>
   </li>
 </ul>
-<%= link_to(weekly_timesheets_path(@week.year, @week.cweek, :format => :print), :class => 'btn') do %>
+<%= link_to(weekly_timesheets_path(@week.year, @week.cweek, :format => :print), :class => 'btn', :target => "_blank") do %>
   <i class="icon-print"></i> Print
 <% end %>
 
