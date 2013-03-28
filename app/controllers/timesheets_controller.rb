@@ -35,6 +35,8 @@ class TimesheetsController < ApplicationController
   def new
     @timesheet.date = Date.today
     @timesheet.lunch_break = 30
+    @timesheet.entries.build
+
   end
 
   # GET /timesheets/1/edit

@@ -20,7 +20,7 @@ class Timesheet < ActiveRecord::Base
     hours = self.hours_worked
 
     if hours >= 0
-      errors.add("entries", "should be provided") if entries.empty?
+      errors.add("entries", "should be provided for the whole day") if entries.empty?
 
       # check if hours_worked equals the sum from all entry hours
       entry_hours = self.entries.reduce(0) { |sum, entry|

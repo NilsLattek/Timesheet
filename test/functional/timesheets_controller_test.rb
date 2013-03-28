@@ -18,6 +18,8 @@ class TimesheetsControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
+    # should only show one active project
+    assert_select '#timesheet_entries_attributes_0_task_id optgroup', {:count => 1}
   end
 
   test "should create timesheet" do
