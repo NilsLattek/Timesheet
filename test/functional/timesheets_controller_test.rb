@@ -49,17 +49,21 @@ class TimesheetsControllerTest < ActionController::TestCase
     # should only show one active project
     assert_select '#timesheet_entries_attributes_1_task_id optgroup', {:count => 1}
     # should show the finished project as inline text
-    assert_select '.nested-fields > .controls', 'Finished Project - Finished task: 2.0 Fixed some bugs'
+    assert_select '.nested-fields > .controls', 'Finished Project - Finished task: 3.0 Fixed some bugs'
   end
 
   test "should update timesheet" do
     entry = entries(:activeEntry)
+    secondEntry = entries(:finishedEntry)
     put :update, id: @timesheet, timesheet: {
       date: @timesheet.date,
       end_time: @timesheet.end_time,
       lunch_break: @timesheet.lunch_break,
       start_time: @timesheet.start_time,
-      entries_attributes: [{task_id: entry.task_id, hours: entry.hours, description: entry.description}]
+      entries_attributes: [
+        {id: entry.id, task_id: entry.task_id, hours: 2, description: 'Description changed'},
+        {id: secondEntry.id, task_id: secondEntry.task_id, hours: 6, description: secondEntry.description}
+      ]
     }
 
     assert_redirected_to timesheet_path(assigns(:timesheet))

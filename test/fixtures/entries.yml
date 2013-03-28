@@ -13,13 +13,13 @@ two:
   description: MyString
 
 activeEntry:
-  hours: 2
+  hours: 5
   task: TaskDevelopment
   timesheet: employeeTimesheet
   description: Testing
 
 finishedEntry:
-  hours: 2
+  hours: 3
   task: FinishedProjectTask
   timesheet: employeeTimesheet
   description: Fixed some bugs

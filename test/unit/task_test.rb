@@ -14,6 +14,6 @@ class TaskTest < ActiveSupport::TestCase
 
   test "should calculate the actual hours for this task" do
     task = tasks(:TaskDevelopment)
-    assert_equal 10, task.actual_hours
+    assert_equal 13, task.actual_hours
   end
 end

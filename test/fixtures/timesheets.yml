@@ -22,6 +22,6 @@ completeDay:
 employeeTimesheet:
   date: <%= 5.days.ago.to_date %>
   start_time: <%= 5.days.ago.to_time.change({ :hour => 8, :min => 30 }) %>
-  end_time: <%= 5.days.ago.to_time.change({ :hour => 17, :min => 30 }) %>
+  end_time: <%= 5.days.ago.to_time.change({ :hour => 17, :min => 0 }) %>
   lunch_break: 30
   user: user

@@ -13,10 +13,10 @@ class ProjectTest < ActiveSupport::TestCase
 
     timesheet = timesheets(:completeDay)
     timesheet.entries.build({ :hours => '3', :description => 'Worked on feature x', :task_id => dev_task.id })
-    timesheet.entries.build({ :hours => '2', :description => "Lot's of meetings", :task_id => pm_task.id })
+    timesheet.entries.build({ :hours => '5', :description => "Lot's of meetings", :task_id => pm_task.id })
     assert timesheet.save, timesheet.errors.full_messages.join("\n")
 
-    assert_equal 5, project.actual_hours
+    assert_equal 8, project.actual_hours
   end
 
   test "should return only active projects" do

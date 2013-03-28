@@ -46,22 +46,13 @@ class TimesheetTest < ActiveSupport::TestCase
     assert_equal 3.23, timesheet.hours_worked
   end
 
-  test "should not save if entry_hours exceeds hours_worked" do
+  test "should not save when there are not enough entry hours" do
     timesheet = timesheets(:one)
     entry = entries(:completeDay)
 
     timesheet.entries = [entry]
-    timesheet.entries.build({ :hours => 3, :description => 'My work', :task_id => '1'})
-
     assert !timesheet.save
     assert_equal 1, timesheet.errors[:entries].length
-  end
-
-  test "should save even if entry_hours do not cover the whole workday" do
-    timesheet = timesheets(:one)
-    timesheet.entries.build({ :hours => 3, :description => 'My work', :task_id => '1'})
-
-    assert timesheet.save
   end
 
   test "should save when there are enough entry hours" do

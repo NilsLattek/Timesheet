@@ -19,7 +19,7 @@ class AbilityTest < ActiveSupport::TestCase
       :end_time => Time.now + 1.hour,
       :lunch_break => 30 })
     timesheet.user = employee
-    timesheet.entries.build({ :hours => 1, :description => 'My work', :task_id => '1' })
+    timesheet.entries.build({ :hours => 2.5, :description => 'My work', :task_id => '1' })
 
     assert timesheet.valid?
     assert !ability.can?(:edit, timesheet)
