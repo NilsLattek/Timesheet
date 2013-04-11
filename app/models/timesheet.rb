@@ -22,8 +22,8 @@ class Timesheet < ActiveRecord::Base
     if hours >= 0
       errors.add("entries", "should be provided for the whole day") if entries.empty?
 
-      # check if hours_worked equals the sum from all entry hours
-      entry_hours = self.entries.reduce(0) { |sum, entry|
+      # check if hours_worked equals the sum from all entry hours. Only use entries which are not marked as deleted
+      entry_hours = self.entries.select { |entry| !entry.marked_for_destruction? }.reduce(0) { |sum, entry|
         #return 0 if not entry.hours
         return sum if not entry.hours
 

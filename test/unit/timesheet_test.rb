@@ -95,4 +95,14 @@ class TimesheetTest < ActiveSupport::TestCase
     assert !timesheet.save
     assert_equal 1, timesheet.errors[:lunch_break].length
   end
+
+  test "should allow removing of an entry" do
+    timesheet = timesheets(:employeeTimesheet)
+    timesheet.entries[0].hours = 8
+    timesheet.entries[1].mark_for_destruction
+
+    assert_difference 'Entry.count', -1 do
+      assert timesheet.save
+    end
+  end
 end
