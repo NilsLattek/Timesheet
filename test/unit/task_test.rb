@@ -16,4 +16,10 @@ class TaskTest < ActiveSupport::TestCase
     task = tasks(:TaskDevelopment)
     assert_equal 13, task.actual_hours
   end
+
+  test "estimated effort cannot be negative" do
+    task = tasks(:TaskDevelopment)
+    task.estimated_effort = -1
+    assert !task.valid?
+  end
 end
