@@ -3,7 +3,9 @@ Timesheets::Application.routes.draw do
   resources :roles
 
   devise_for :users
-  resources :users
+  resources :users do
+    match 'cw/:year/:week/projects', :action => :projects, :constraints => {:year => /[0-9|]+/, :week => /[0-9|]+/}, :as => :projects
+  end
 
   resources :timesheets
   match 'timesheets/cw/:year/:week' => 'timesheets#weekly', :via => :get, :as => :weekly_timesheets

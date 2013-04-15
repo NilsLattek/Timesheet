@@ -24,4 +24,21 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal 1, projects.length
     assert_equal 'MyProject', projects[0].name
   end
+
+  test "should return the users projects with the aggregated hours" do
+    user = users(:user)
+    timesheet = timesheets(:employeeTimesheet)
+    finishedProject = projects(:FinishedProject)
+    finishedProjectTask = tasks(:FinishedProjectTask)
+
+    # create a second timesheet in the same week so that we can test the aggregation
+    secondTimesheet = timesheet.dup
+    secondTimesheet.entries.build({ :hours => 8, :description => 'Another entry', :task_id => finishedProjectTask.id })
+    secondTimesheet.save
+
+    projects = Project.find_for_user_by_week user, timesheet.date
+    assert_equal 2, projects.length
+    assert_equal 11, projects.select { |p| p.id == finishedProject.id }[0].hours
+    assert_equal 5, projects.select { |p| p.id != finishedProject.id }[0].hours
+  end
 end

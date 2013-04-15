@@ -79,4 +79,19 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def projects
+    @user = User.find(params[:user_id])
+    @week = Date.commercial(params[:year].to_i, params[:week].to_i)
+
+    @projects = Project.find_for_user_by_week @user, @week
+    # reformat db result so that it is easier to render
+    @projects = @projects.reduce({}) do | result, row |
+      result[row.name] = [] if result[row.name].nil?
+      result[row.name] = row.hours.to_f
+      result
+    end
+
+    @project_sum = @projects.values.reduce(0, :+)
+  end
 end
