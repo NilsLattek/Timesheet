@@ -20,6 +20,7 @@ class TasksController < ApplicationController
     @task = Task.new
     project = Project.find(params[:project_id])
     @task.project = project
+    @task.estimated_effort = 0
 
     respond_to do |format|
       format.html # new.html.erb
