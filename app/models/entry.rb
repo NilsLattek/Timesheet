@@ -12,4 +12,8 @@ class Entry < ActiveRecord::Base
 
     !task.project.finished
   end
+
+  def self.hours_per_week_for_user user
+    Entry.select(%{ SUM(hours) AS hours, WEEK(date, 1) AS week }).joins(:timesheet).where('timesheets.user_id = ?', user.id).group('WEEK(date, 1)')
+  end
 end

@@ -1,0 +1,20 @@
+<%- model_class = Entry.new.class -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Calendar week</th>
+      <th><%= model_class.human_attribute_name(:actual_hours) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hours_per_week.each do |entry| %>
+      <tr>
+        <td><%= entry.week %></td>
+        <td><%= entry.hours %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= page_navigation_links @hours_per_week %>

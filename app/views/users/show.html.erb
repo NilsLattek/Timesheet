@@ -1,37 +1,33 @@
 <%- model_class = @user.class -%>
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
+<div class="row">
+  <div class="span4">
+    <p>
+      <strong><%= model_class.human_attribute_name(:username) %>:</strong><br>
+      <%= @user.username %>
+    </p>
+    <p>
+      <strong><%= model_class.human_attribute_name(:working_hours) %>:</strong><br>
+      <%= @user.working_hours %>
+    </p>
+  </div>
+  <div class="span4">
+    <p>
+      <strong><%= model_class.human_attribute_name(:email) %>:</strong><br>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong><%= model_class.human_attribute_name(:sign_in_count) %>:</strong><br>
+      <%= @user.sign_in_count %>
+    </p>
+  </div>
+</div>
+
 <p>
-  <strong><%= model_class.human_attribute_name(:username) %>:</strong><br>
-  <%= @user.username %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:working_hours) %>:</strong><br>
-  <%= @user.working_hours %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:email) %>:</strong><br>
-  <%= @user.email %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:sign_in_count) %>:</strong><br>
-  <%= @user.sign_in_count %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:current_sign_in_at) %>:</strong><br>
-  <%= @user.current_sign_in_at %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:last_sign_in_at) %>:</strong><br>
-  <%= @user.last_sign_in_at %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:current_sign_in_ip) %>:</strong><br>
-  <%= @user.current_sign_in_ip %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:last_sign_in_ip) %>:</strong><br>
-  <%= @user.last_sign_in_ip %>
+  <strong><%=t '.title', :default => Entry.new.class.model_name.human.pluralize %>:</strong>
+  <%= render :partial => 'hours_per_week' %>
 </p>
 
 <div class="form-actions">
