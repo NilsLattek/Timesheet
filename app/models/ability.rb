@@ -31,6 +31,7 @@ class Ability
       can :manage, :all
     elsif user.has_role? :manager
       can :manage, Project
+      can :manage, Task
     end
 
     can :manage, Timesheet, :user_id => user.id
