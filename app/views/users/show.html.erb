@@ -23,6 +23,12 @@
       <%= @user.sign_in_count %>
     </p>
   </div>
+  <div class="span4">
+    <p>
+      <strong><%= model_class.human_attribute_name(:active) %>:</strong><br>
+      <%=t @user.active?.to_s %>
+    </p>
+  </div>
 </div>
 
 <p>
