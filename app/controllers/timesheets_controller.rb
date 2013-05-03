@@ -13,7 +13,7 @@ class TimesheetsController < ApplicationController
     #@week = Date.strptime(params[:week], '%W')
     @week = Date.commercial(params[:year].to_i, params[:week].to_i)
     @timesheets = @timesheets.where(:date => (@week.beginning_of_week)..(@week.end_of_week)).order('date DESC')
-    @hours_worked = @timesheets.inject(0){|sum, item| sum + item.hours_worked}
+    @hours_worked = @timesheets.inject(0){|sum, item| sum + item.hours_worked}.round 2
 
     respond_with(@timesheets) do |format|
       format.html
