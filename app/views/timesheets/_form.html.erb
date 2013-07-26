@@ -11,7 +11,7 @@
   <div class="control-group">
     <%= f.label :start_time, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '' %>
+      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '', :autofocus => true %>
     </div>
   </div>
   <div class="control-group">
