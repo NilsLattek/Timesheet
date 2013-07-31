@@ -37,7 +37,7 @@ class EntryTest < ActiveSupport::TestCase
     secondTimesheet.save!
 
     entries = Entry.hours_per_week_for_user(user).order('WEEK(date) DESC')
-    assert_equal 2, entries.length
+    assert_equal 3, entries.length
     assert_equal 8, entries[0].hours
     assert_equal timesheet.date.cweek, entries[0].week
 

@@ -21,8 +21,9 @@ class ProjectTest < ActiveSupport::TestCase
 
   test "should return only active projects" do
     projects = Project.active
-    assert_equal 1, projects.length
-    assert_equal 'MyProject', projects[0].name
+    assert_equal 3, projects.length
+    assert_equal 'AnotherProject', projects[0].name
+    assert_equal 'MyProject', projects[1].name
   end
 
   test "should return the users projects with the aggregated hours" do
@@ -40,5 +41,35 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal 2, projects.length
     assert_equal 11, projects.select { |p| p.id == finishedProject.id }[0].hours
     assert_equal 5, projects.select { |p| p.id != finishedProject.id }[0].hours
+  end
+
+  test "prevent removal of project-user association when there are already entries assigned to it" do
+    user = users(:user)
+    project = projects(:MyProject)
+
+    assert_raises(RuntimeError) {
+      project.users.delete(user)
+    }
+  end
+
+  test "planned hours returns the sum of all planned hours for this project" do
+    project = projects(:MyProject)
+    assert_equal 25.0, project.planned_hours
+  end
+
+  test "total_actual_hours_per_week_between" do
+    project = projects(:MyProject)
+    user = users(:user)
+    timesheet = timesheets(:employeeTimesheet2)
+    testingTask = tasks(:TaskTesting)
+
+    secondTimesheet = timesheet.dup
+    secondTimesheet.date = timesheet.date.end_of_week
+    secondTimesheet.entries.build({ :hours => 7.5, :description => 'Another entry', :task_id => testingTask.id })
+    secondTimesheet.save!
+
+    result = project.total_actual_hours_per_week_between 21.days.ago.to_date, Date.today
+    assert_equal 5, result[user.id][5.days.ago.to_date.cweek]
+    assert_equal 15, result[user.id][20.days.ago.to_date.cweek]
   end
 end

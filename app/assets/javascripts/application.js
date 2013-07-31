@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-dropdown
+//= require bootstrap-tooltip
 //= require_tree .
 //= require cocoon

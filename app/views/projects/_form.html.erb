@@ -9,9 +9,48 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :start_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :start_date, :type => 'date' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :end_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :end_date, :type => 'date' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :remaining_effort, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :remaining_effort, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :finished, :class => 'control-label' %>
     <div class="controls">
       <%= f.check_box :finished, :class => 'check_box' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :users, :class => 'control-label' %>
+    <div class="controls">
+      <% for user in User.order('username') %>
+        <label class="checkbox">
+          <% if user.can_remove_user_from_project(@project) %>
+            <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user) %>
+          <% else %>
+            <%= check_box_tag "project[user_ids][]", user.id, @project.users.include?(user), :disabled => true %>
+            <%= hidden_field_tag "project[user_ids][]", user.id %>
+          <% end %>
+          <%= user.username %>
+        </label>
+      <% end %>
+      <%= hidden_field_tag "project[user_ids][]", "" %>
     </div>
   </div>
 

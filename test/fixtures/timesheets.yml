@@ -25,3 +25,10 @@ employeeTimesheet:
   end_time: <%= 5.days.ago.to_time.change({ :hour => 17, :min => 0 }) %>
   lunch_break: 30
   user: user
+
+employeeTimesheet2:
+  date: <%= 20.days.ago.to_date %>
+  start_time: <%= 20.days.ago.to_time.change({ :hour => 8, :min => 0 }) %>
+  end_time: <%= 20.days.ago.to_time.change({ :hour => 16, :min => 30 }) %>
+  lunch_break: 60
+  user: user

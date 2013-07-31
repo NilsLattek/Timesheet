@@ -1,0 +1,7 @@
+user_myproject:
+  user: user
+  project: MyProject
+
+user_anotherproject:
+  user: user
+  project: AnotherProject

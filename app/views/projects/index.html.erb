@@ -6,9 +6,12 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:finished) %></th>
       <th><%= model_class.human_attribute_name(:estimated_effort) %></th>
       <th><%= model_class.human_attribute_name(:actual_hours) %></th>
+      <th><%= model_class.human_attribute_name(:remaining_effort) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -16,10 +19,15 @@
     <% @projects.each do |project| %>
       <tr data-link="<%= project_path(project) %>">
         <td><%= project.name %></td>
+        <td><%= project.start_date ? l(project.start_date) : nil %></td>
+        <td><%= project.end_date ? l(project.end_date) : nil  %></td>
         <td><%=t project.finished?.to_s %></td>
         <td><%= project.estimated_effort %></td>
         <td><%= project.actual_hours %></td>
+        <td><%= project.remaining_effort %></td>
         <td>
+          <%= link_to t('.planning', :default => t("helpers.links.planning")),
+                      planning_project_path(project, Date.today.strftime('%Y-%m')), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_project_path(project), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

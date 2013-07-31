@@ -19,6 +19,21 @@
 <div class="row">
   <div class="span6">
     <p>
+      <strong><%= model_class.human_attribute_name(:start_date) %>:</strong><br>
+      <%= @project.start_date ? l(@project.start_date) : nil %>
+    </p>
+  </div>
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:end_date) %>:</strong><br>
+      <%= @project.end_date ? l(@project.end_date) : nil %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <p>
       <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
       <%= @project.estimated_effort %>
     </p>
@@ -31,14 +46,38 @@
   </div>
 </div>
 
-<p>
-<strong><%=t '.title', :default => Task.new.class.model_name.human.pluralize %>:</strong>
-<%= render :partial => 'tasks' %>
-</p>
+<div class="row">
+  <div class="span12">
+    <p>
+      <strong><%= model_class.human_attribute_name(:remaining_effort) %>:</strong><br>
+      <%= @project.remaining_effort %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>
+      <strong><%= model_class.human_attribute_name(:users) %>:</strong><br>
+      <%= @project.users.map { |u| u.username }.join ', ' %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>
+    <strong><%=t '.title', :default => Task.new.class.model_name.human.pluralize %>:</strong>
+    <%= render :partial => 'tasks' %>
+    </p>
+  </div>
+</div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               projects_path, :class => 'btn'  %>
+  <%= link_to t('.planning', :default => t("helpers.links.planning")),
+                      planning_project_path(@project, Date.today.strftime('%Y-%m')), :class => 'btn' %>
   <%= link_to "Add task", new_project_task_url(@project), :class => 'btn btn-primary' %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_path(@project), :class => 'btn' %>

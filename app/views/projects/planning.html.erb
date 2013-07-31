@@ -1,0 +1,60 @@
+<%= form_tag do %>
+  <input class="pull-right" type="month" id="month-select" name="month" value="<%= @selectedMonth.strftime '%Y-%m' %>">
+  <h2><%= @project.name %></h2>
+
+  <div class="row">
+    <div class="span4">
+      <p>
+        <strong><%= Project.human_attribute_name(:estimated_effort) %>:</strong> <%= @project.estimated_effort %>
+      </p>
+    </div>
+    <div class="span4">
+      <p>
+        <strong><%= Project.human_attribute_name(:actual_hours) %>:</strong> <%= @project.actual_hours %>
+      </p>
+    </div>
+    <div class="span4">
+      <p>
+        <strong>Hours planned:</strong> <span id="planned-total"><%= @project.planned_hours %></span>
+      </p>
+    </div>
+  </div>
+  <br />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <% @weeks.each do |week| %>
+          <th>CW <%= week.cweek %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% @project.users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <% @weeks.each do |week| %>
+          <td>
+            <input type="number" class="input-small" name="project[planned_hours][<%= user.id %>][<%= week.cweek %>]" value="<%= @planned_hours[user.id][week.cweek][:hours] %>" /><br />
+            <small>
+              <span class="other-planned-hours"
+                 title="<% user.planned_hours_by_project_in_week(week).each do |otherPlannedHours| %>
+                          <%= otherPlannedHours.name %>: <%= otherPlannedHours.hours %><br />
+                        <% end %>">
+                Utilization
+                <span name="project[planned_hours][<%= user.id %>][<%= week.cweek %>]_utilization" data-planned-hours="<%= @planned_hours[user.id][week.cweek][:planned_hours] %>">
+                  <%= @planned_hours[user.id][week.cweek][:planned_hours] %>
+                </span> of <%= @planned_hours[user.id][week.cweek][:working_hours] %>h
+              </span><br />
+
+              Actual <%= @planned_hours[user.id][week.cweek][:actual_hours] %>h
+            </small>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag "Speichern", :class => 'btn btn-primary' %>
+<% end %>

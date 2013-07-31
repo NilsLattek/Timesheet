@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+user_myproject:
+  assignment: user_myproject
+  week: 2013-07-18
+  hours: 10
+
+user_myproject2:
+  assignment: user_myproject
+  week: 2013-06-27
+  hours: 15
+
+user_anotherproject:
+  assignment: user_anotherproject
+  week: 2013-07-18
+  hours: 5

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include DateHelper
+
   # creates @users / @user for each action which is already loaded and authorized
   load_and_authorize_resource
 
@@ -57,5 +59,33 @@ class UsersController < ApplicationController
     end
 
     @project_sum = @projects.values.reduce(0, :+)
+  end
+
+  def utilizations
+    @selectedMonth = Date.strptime params[:month], '%Y-%m'
+    @weeks = cweeks_in_month @selectedMonth
+    users = User.active
+    phs = PlannedHour.total_hours_per_week_between @weeks.first, @weeks.last
+
+    @planned_hours = []
+    users.each do |user|
+      @weeks.each do |week|
+        hours_in_week = phs.select { |row| row.week == week and row.user_id == user.id }
+        hours_in_week = hours_in_week.length > 0 ? hours_in_week[0].hours.to_f / user.working_hours * 100 : 0
+        hours_in_week = hours_in_week.round 2
+
+        ph = @planned_hours.select { |row| row[:user] == user }
+
+        if ph.length > 0
+          # attach week
+          ph[0][:utilization] << hours_in_week
+        else
+          @planned_hours << {
+            user: user,
+            utilization: [hours_in_week]
+          }
+        end
+      end
+    end
   end
 end

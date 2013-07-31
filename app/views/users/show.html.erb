@@ -31,6 +31,15 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="span12">
+    <p>
+      <strong><%= model_class.human_attribute_name(:projects) %>:</strong><br>
+      <%= @user.projects.active.map { |p| p.name }.join ', ' %>
+    </p>
+  </div>
+</div>
+
 <p>
   <strong><%=t '.title', :default => Entry.new.class.model_name.human.pluralize %>:</strong>
   <%= render :partial => 'hours_per_week' %>

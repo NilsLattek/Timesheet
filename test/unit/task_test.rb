@@ -14,7 +14,7 @@ class TaskTest < ActiveSupport::TestCase
 
   test "should calculate the actual hours for this task" do
     task = tasks(:TaskDevelopment)
-    assert_equal 13, task.actual_hours
+    assert_equal 19, task.actual_hours
   end
 
   test "estimated effort cannot be negative" do

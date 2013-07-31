@@ -18,8 +18,8 @@ class TimesheetsControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
-    # should only show one active project
-    assert_select '#timesheet_entries_attributes_0_task_id optgroup', {:count => 1}
+    # should only show two active projects
+    assert_select '#timesheet_entries_attributes_0_task_id optgroup', {:count => 2}
   end
 
   test "should create timesheet" do
@@ -46,8 +46,8 @@ class TimesheetsControllerTest < ActionController::TestCase
     get :edit, id: @timesheet
     assert_response :success
 
-    # should only show one active project
-    assert_select '#timesheet_entries_attributes_1_task_id optgroup', {:count => 1}
+    # should only show two active projects
+    assert_select '#timesheet_entries_attributes_1_task_id optgroup', {:count => 2}
     # should show the finished project as inline text
     assert_select '.nested-fields > .controls', 'Finished Project - Finished task: 3.0 Fixed some bugs'
   end

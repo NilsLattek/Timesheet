@@ -7,6 +7,9 @@
 admin:
   email: admin@localhost.de
   roles: admin
+  working_hours: 40
 
 user:
   email: user@localhost.de
+  username: User
+  working_hours: 40

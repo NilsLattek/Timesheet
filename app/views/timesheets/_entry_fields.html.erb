@@ -5,7 +5,7 @@
   <% end %>
   <div class="controls">
     <% if f.object.editable? %>
-      <%= f.grouped_collection_select :task_id, Project.active, :tasks, :name, :id, :name, :prompt => true %>
+      <%= f.grouped_collection_select :task_id, current_user.projects.active, :tasks, :name, :id, :name, :prompt => true %>
       <div class="input-prepend">
         <span class="add-on"><%= model_class.human_attribute_name(:hours) %></span>
         <%= f.number_field :hours, :class => 'number_field input-mini', :step => 'any' %>

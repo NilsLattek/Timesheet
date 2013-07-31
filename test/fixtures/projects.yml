@@ -3,6 +3,12 @@
 MyProject:
   name: MyProject
 
+AnotherProject:
+  name: AnotherProject
+
+NotUsedProject:
+  name: NotUsedProject
+
 FinishedProject:
   name: Finished Project
   finished: true

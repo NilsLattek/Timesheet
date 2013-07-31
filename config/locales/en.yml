@@ -14,3 +14,10 @@ en:
     formats:
       default: "%d.%m.%Y %H:%M"
       short: "%H:%M"
+
+  activerecord:
+    attributes:
+      project:
+        estimated_effort: "Original effort"
+      task:
+        estimated_effort: "Original effort"

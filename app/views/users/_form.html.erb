@@ -52,6 +52,24 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <%= f.label :projects, :class => 'control-label' %>
+    <div class="controls">
+      <% for project in Project.order('name') %>
+        <label class="checkbox">
+          <% if project.can_remove_project_from_user(@user) %>
+            <%= check_box_tag "user[project_ids][]", project.id, @user.projects.include?(project) %>
+          <% else %>
+            <%= check_box_tag "user[project_ids][]", project.id, @user.projects.include?(project), :disabled => true %>
+            <%= hidden_field_tag "user[project_ids][]", project.id %>
+          <% end %>
+          <%= project.name %>
+        </label>
+      <% end %>
+      <%= hidden_field_tag "user[project_ids][]", "" %>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

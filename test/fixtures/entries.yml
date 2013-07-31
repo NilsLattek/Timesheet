@@ -6,12 +6,6 @@ completeDay:
   timesheet:
   description: MyString
 
-two:
-  hours: 1.5
-  task:
-  timesheet:
-  description: MyString
-
 activeEntry:
   hours: 5
   task: TaskDevelopment
@@ -23,3 +17,15 @@ finishedEntry:
   task: FinishedProjectTask
   timesheet: employeeTimesheet
   description: Fixed some bugs
+
+activeEntry2:
+  hours: 6
+  task: TaskDevelopment
+  timesheet: employeeTimesheet2
+  description: Testing again
+
+testingEntry:
+  hours: 1.5
+  task: TaskTesting
+  timesheet: employeeTimesheet2
+  description: Testing

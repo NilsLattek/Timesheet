@@ -1,0 +1,18 @@
+<input type="month" id="month-select" name="month" value="<%= @selectedMonth.strftime '%Y-%m' %>">
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <% @weeks.each do |week| %>
+      <th>CW <%= week.cweek %></th>
+    <% end %>
+  </tr>
+<% @planned_hours.each do |ph| %>
+  <tr>
+    <td><%= ph[:user].username %></td>
+    <% ph[:utilization].each do |utilization| %>
+      <td><span class="badge <%= if utilization == 100 then 'badge-success' elsif utilization > 100 then 'badge-warning' end %>"><%= utilization %>%</span></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

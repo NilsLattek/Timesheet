@@ -25,6 +25,7 @@
             <% end %>
             <% if can? :manage, Project %>
               <li><%= link_to "Projects", projects_path %></li>
+              <li><%= link_to "Utilizations", utilizations_path(Date.today.strftime('%Y-%m')) %></li>
             <% end %>
 
             <% if can? :manage, :all %>

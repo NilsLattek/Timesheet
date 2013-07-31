@@ -34,7 +34,7 @@ class TasksControllerTest < ActionController::TestCase
     assert_response :success
 
     # should show entries for this task
-    assert_select 'table tr', {:count => 2}
+    assert_select 'table tr', {:count => 3}
   end
 
   test "should get edit" do

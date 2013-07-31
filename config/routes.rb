@@ -3,6 +3,8 @@ Timesheets::Application.routes.draw do
   resources :roles
 
   devise_for :users
+
+  match 'users/utilizations/:month' => 'users#utilizations', :via => :get, :as => :utilizations
   resources :users do
     match 'cw/:year/:week/projects', :action => :projects, :constraints => {:year => /[0-9|]+/, :week => /[0-9|]+/}, :as => :projects
   end
@@ -13,6 +15,8 @@ Timesheets::Application.routes.draw do
   resources :projects do
     resources :tasks
   end
+  match 'projects/:id/planning/:month' => 'projects#planning', :via => :get, :as => :planning_project
+  match 'projects/:id/planning/:month' => 'projects#save_planning', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
