@@ -44,7 +44,7 @@
           </ul>
           <ul class="nav pull-right">
             <% if user_signed_in? %>
-              <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to "Logout (#{current_user.username})", destroy_user_session_path, :method => :delete %></li>
             <% end %>
           </ul>
         </div>
