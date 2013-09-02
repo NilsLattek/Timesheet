@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130828114714) do
+ActiveRecord::Schema.define(:version => 20130902100009) do
 
   create_table "assignments", :force => true do |t|
     t.integer "project_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20130828114714) do
     t.integer  "project_id"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
-    t.decimal  "estimated_effort", :precision => 4, :scale => 2
+    t.decimal  "estimated_effort", :precision => 5, :scale => 2
   end
 
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
