@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <% @weeks.each do |week| %>
-      <th>CW <%= week.cweek %></th>
+      <th class="<%= week.cweek == Date.today.cweek ? 'current' : '' %>">CW <%= week.cweek %></th>
     <% end %>
   </tr>
 <% @planned_hours.each do |ph| %>
