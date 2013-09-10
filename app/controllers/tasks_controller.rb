@@ -30,7 +30,7 @@ class TasksController < ApplicationController
 
   # PUT /tasks/1
   def update
-    flash[:notice] = 'Task was successfully updated.' if @task.update_attributes(params[:task])
+    flash[:notice] = 'Task was successfully updated.' if @task.update(task_params)
     respond_with @task, :location => project_path(@task.project)
   end
 
@@ -39,4 +39,10 @@ class TasksController < ApplicationController
     flash[:notice] = 'Task was successfully deleted.' if @task.destroy
     respond_with @task, :location => project_path(@task.project)
   end
+
+  private
+
+    def task_params
+      params.require(:task).permit(:name, :project_id, :estimated_effort)
+    end
 end

@@ -11,7 +11,7 @@ class TimesheetTest < ActiveSupport::TestCase
     entry = entries(:completeDay)
     timesheet.entries = [entry]
 
-    timesheet.date = Date.new
+    timesheet.date = Date.today
     assert !timesheet.save
 
     timesheet.start_time = Time.new(2012, 1, 17, 8, 0)

@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   # PUT /projects/1
   def update
-    flash[:notice] = 'Project was successfully updated.' if @project.update_attributes(params[:project])
+    flash[:notice] = 'Project was successfully updated.' if @project.update(project_params)
     respond_with @project
   end
 
@@ -58,11 +58,11 @@ class ProjectsController < ApplicationController
         hours_for_week = weeks_for_user[week.cweek.to_s]
 
         if hours_for_week and hours_for_week.length > 0 and hours_for_week.to_f != 0.0
-          ph = PlannedHour.find_or_create_by_assignment_id_and_week(assignment.id, week)
+          ph = PlannedHour.find_or_create_by(assignment_id: assignment.id, week: week)
           ph.hours = hours_for_week
           ph.save
         else
-          ph = PlannedHour.find_by_assignment_id_and_week(assignment.id, week)
+          ph = PlannedHour.find_by(assignment_id: assignment.id, week: week)
           ph.destroy if ph
         end
       end
@@ -113,4 +113,16 @@ class ProjectsController < ApplicationController
 
     result
   end
+
+  private
+
+    def project_params
+      params.require(:project).permit(:name, :finished, {user_ids: []}, :start_date, :end_date, :remaining_effort).tap do |whitelisted|
+        if params[:project] && params[:project][:planned_hours]
+          whitelisted[:planned_hours] = params[:project][:planned_hours]
+        end
+      end
+
+      #params.require(:project).permit!
+    end
 end

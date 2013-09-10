@@ -27,7 +27,7 @@ class RolesController < ApplicationController
 
   # PUT /roles/1
   def update
-    flash[:notice] = 'Role was successfully updated.' if @role.update_attributes(params[:role])
+    flash[:notice] = 'Role was successfully updated.' if @role.update(role_params)
     respond_with @role
   end
 
@@ -36,4 +36,10 @@ class RolesController < ApplicationController
     flash[:notice] = 'Role was successfully deleted.' if @role.destroy
     respond_with @role
   end
+
+  private
+
+    def role_params
+      params.require(:role).permit(:name)
+    end
 end

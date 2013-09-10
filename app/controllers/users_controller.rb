@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
 
-    flash[:notice] = 'User was successfully updated.' if @user.update_attributes(params[:user])
+    flash[:notice] = 'User was successfully updated.' if @user.update(user_params)
     respond_with @user
   end
 
@@ -88,4 +88,10 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:working_hours, :email, :username, :password, :password_confirmation, :active, :role_ids => [], :project_ids => [])
+    end
 end

@@ -105,7 +105,7 @@ class TimesheetsController < ApplicationController
 
   # PUT /timesheets/1
   def update
-    flash[:notice] = 'Timesheet was successfully updated.' if @timesheet.update_attributes(params[:timesheet])
+    flash[:notice] = 'Timesheet was successfully updated.' if @timesheet.update(timesheet_params)
     respond_with @timesheet
   end
 
@@ -114,4 +114,10 @@ class TimesheetsController < ApplicationController
     flash[:notice] = 'Timesheet was successfully deleted.' if @timesheet.destroy
     respond_with @timesheet, :location => weekly_timesheets_path(@timesheet.date.year, @timesheet.date.cweek)
   end
+
+  private
+
+    def timesheet_params
+      params.require(:timesheet).permit(:date, :end_time, :lunch_break, :start_time, :entries_attributes => [:_destroy, :task_id, :hours, :description, :id])
+    end
 end

@@ -1,6 +1,4 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :finished, :user_ids, :start_date, :end_date, :remaining_effort
-
   has_many :assignments
   has_many :users, :through => :assignments, :before_remove => :before_user_removal
 

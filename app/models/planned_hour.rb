@@ -2,7 +2,6 @@ class PlannedHour < ActiveRecord::Base
   belongs_to :assignment
   has_one :project, :through => :assignment
   has_one :user, :through => :assignment
-  attr_accessible :hours, :week
 
   validates_numericality_of :hours, :greater_than_or_equal_to => 0
 

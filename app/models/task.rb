@@ -1,7 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
   has_many :entries
-  attr_accessible :name, :project_id, :estimated_effort
 
   validates :name, :presence => true,
                    :length => { :minimum => 5 }

@@ -11,10 +11,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role_ids, :username, :working_hours, :active, :project_ids
-  # attr_accessible :title, :body
-
   validates :username, :working_hours, :presence => true
 
   scope :active, -> { where(:active => true).order('username') }
