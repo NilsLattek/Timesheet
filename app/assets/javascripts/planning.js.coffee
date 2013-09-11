@@ -4,7 +4,7 @@ $ ->
   $('.other-planned-hours').tooltip({ html: true, placement: 'bottom' })
 
   $('#month-select').on 'change', (e) ->
-    if unsavedData && confirm("You have unsaved data, do you want to leave this page and discard your changes?")
+    if !unsavedData || (unsavedData && confirm("You have unsaved data, do you want to leave this page and discard your changes?"))
       window.location = e.currentTarget.value
 
   $("input[name*='project[planned_hours]']").on 'focus', (e) ->
