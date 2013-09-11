@@ -78,11 +78,11 @@ class UsersController < ApplicationController
 
         if ph.length > 0
           # attach week
-          ph[0][:utilization] << hours_in_week
+          ph[0][:utilization] << {week: week, hours: hours_in_week}
         else
           @planned_hours << {
             user: user,
-            utilization: [hours_in_week]
+            utilization: [{week: week, hours: hours_in_week}]
           }
         end
       end

@@ -11,7 +11,14 @@
   <tr>
     <td><%= ph[:user].username %></td>
     <% ph[:utilization].each do |utilization| %>
-      <td><span class="badge <%= if utilization == 100 then 'badge-success' elsif utilization > 100 then 'badge-warning' end %>"><%= utilization %>%</span></td>
+      <td>
+        <span class="other-planned-hours"
+           title="<% ph[:user].planned_hours_by_project_in_week(utilization[:week]).each do |otherPlannedHours| %>
+                    <%= otherPlannedHours.name %>: <%= otherPlannedHours.hours %><br />
+                  <% end %>">
+          <span class="badge <%= if utilization[:hours] == 100 then 'badge-success' elsif utilization[:hours] > 100 then 'badge-warning' end %>"><%= utilization[:hours] %>%</span>
+        </span>
+      </td>
     <% end %>
   </tr>
 <% end %>
