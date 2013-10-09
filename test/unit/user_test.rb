@@ -26,4 +26,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "MyProject", phs[1].name
     assert_equal 10, phs[1].hours
   end
+
+  test "load all developers" do
+    developers = User.developer
+    assert_equal 1, developers.length
+  end
 end

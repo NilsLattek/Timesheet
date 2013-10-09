@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(:active => true).order('username') }
 
+  scope :developer, -> { joins(:roles).where('roles.name = ?', :developer).order('username') }
+
   def has_role?(role_sym)
     roles.any? { |r| r.name.underscore.to_sym == role_sym }
   end

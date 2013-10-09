@@ -10,8 +10,9 @@ puts 'SETTING UP ROLES'
 adminRole = Role.create! :name => 'Admin'
 managerRole = Role.create! :name => 'Manager'
 employeeRole = Role.create! :name => 'Employee'
+developerRole = Role.create! :name => 'Developer'
 
 puts 'SETTING UP ADMIN USER'
-admin = User.create! :username => 'Admin', :email => 'admin@localhost.com', :password => 'admin123', :password_confirmation => 'admin123'
+admin = User.create! :username => 'Admin', :email => 'admin@localhost.com', :password => 'admin123', :password_confirmation => 'admin123', :working_hours => 40
 admin.roles.push adminRole
 puts 'New user created: ' << admin.username

@@ -61,4 +61,12 @@ class UsersControllerTest < ActionController::TestCase
       put :update, id: @user, user: { username: @user.username, project_ids: [project.id] }
     end
   end
+
+  test "should show developers in utilization view" do
+    get :utilizations, month: '2013-09'
+    assert_response :success
+
+    # confirm that the project detail page shows the projects entries
+    assert_select 'table tbody tr', {:count => 1}
+  end
 end

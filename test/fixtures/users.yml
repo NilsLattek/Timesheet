@@ -12,4 +12,5 @@ admin:
 user:
   email: user@localhost.de
   username: User
+  roles: developer
   working_hours: 40

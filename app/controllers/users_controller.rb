@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   def utilizations
     @selectedMonth = Date.strptime params[:month], '%Y-%m'
     @weeks = cweeks_in_month @selectedMonth
-    users = User.active
+    users = User.developer
     phs = PlannedHour.total_hours_per_week_between @weeks.first, @weeks.last
 
     @planned_hours = []
