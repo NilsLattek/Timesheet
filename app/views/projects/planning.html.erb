@@ -39,7 +39,7 @@
             <small>
               <span class="other-planned-hours"
                  title="<% user.planned_hours_by_project_in_week(week).each do |otherPlannedHours| %>
-                          <%= otherPlannedHours.name %>: <%= otherPlannedHours.hours %><br />
+                          <%= otherPlannedHours.name %>: <%= format_hours otherPlannedHours.hours %><br />
                         <% end %>">
                 Utilization
                 <span name="project[planned_hours][<%= user.id %>][<%= week.cweek %>]_utilization" data-planned-hours="<%= @planned_hours[user.id][week.cweek][:planned_hours] %>">

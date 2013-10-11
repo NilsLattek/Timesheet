@@ -1,0 +1,50 @@
+<div class="page-header">
+  <h2>Current todos</h2>
+</div>
+
+<h3>This week</h3>
+
+<% @planned_hours_current_week.each_with_index do |ph, index| %>
+  <% if index % 4 == 0 %>
+  <div class="row">
+  <% end %>
+
+  <div class="span3">
+    <div class="<%= 'dashboard-info-box' if index % 4 != 3 %>">
+      <%= ph.name %><div class="font-size-large"><b><%= format_hours ph.hours %></b></div>
+    </div>
+  </div>
+
+  <% if index % 4 == 3 %>
+  </div>
+  <% end %>
+<% end %>
+
+<% if @planned_hours_current_week.length % 4 != 0 %>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="span6">
+    <h3>Next week</h3>
+    <table class="table table-striped">
+      <% @planned_hours_next_week.each do |ph| %>
+      <tr>
+        <td><%= ph.name %></td>
+        <td><%= format_hours ph.hours %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="span6">
+    <h3>The week after next week</h3>
+    <table class="table table-striped">
+      <% @planned_hours_second_week.each do |ph| %>
+      <tr>
+        <td><%= ph.name %></td>
+        <td><%= format_hours ph.hours %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
