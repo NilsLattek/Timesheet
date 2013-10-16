@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   before_filter :prepare_planning, :only => [:planning, :save_planning]
 
   respond_to :html
+  respond_to :json, :only => [:index]
 
   # GET /projects
   def index
