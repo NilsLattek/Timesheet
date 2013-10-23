@@ -1,4 +1,6 @@
 class TimesheetsController < ApplicationController
+  include DateHelper
+
   load_and_authorize_resource :through => :current_user
 
   respond_to :html
@@ -14,6 +16,7 @@ class TimesheetsController < ApplicationController
     @week = Date.commercial(params[:year].to_i, params[:week].to_i)
     @timesheets = @timesheets.where(:date => (@week.beginning_of_week)..(@week.end_of_week)).order('date DESC')
     @hours_worked = @timesheets.inject(0){|sum, item| sum + item.hours_worked}.round 2
+    @planned_hours = current_user.planned_hours_by_project_in_week(thursday_of_week(@week))
 
     respond_with(@timesheets) do |format|
       format.html

@@ -9,16 +9,30 @@
 </div>
 
 <div class="row">
-    <div class="span9">
-      <%= render :partial => 'timesheet_table' %>
+  <div class="span9">
+    <%= render :partial => 'timesheet_table' %>
+  </div>
+  <div class="span3">
+    <div class="well well-small">
+      <b><%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></b>
+      <div>Hours worked: <%= @hours_worked %></div>
     </div>
-    <div class="span3">
-      <div class="well well-small">
-        <b><%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></b>
-        <div>Hours worked: <%= @hours_worked %></div>
+
+    <div class="well well-small">
+      <b>Todos for this week:</b>
+      <div>
+        <table class="table">
+          <% @planned_hours.each do |ph| %>
+          <tr>
+            <td><%= ph.name %></td>
+            <td><b><%= format_hours ph.hours %></b></td>
+          </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
 
 <ul class="pager">

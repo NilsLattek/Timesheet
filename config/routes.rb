@@ -1,7 +1,5 @@
 Timesheets::Application.routes.draw do
 
-  get "dashboard/index"
-
   resources :roles
 
   devise_for :users
@@ -69,7 +67,7 @@ Timesheets::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dashboard#index'
+  root :to => 'timesheets#weekly', :year => Date.today.year, :week => Date.today.cweek
 
   # See how all your routes lay out with "rake routes"
 
