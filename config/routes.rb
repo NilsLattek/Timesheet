@@ -9,6 +9,8 @@ Timesheets::Application.routes.draw do
     match 'cw/:year/:week/projects', :action => :projects, :constraints => {:year => /[0-9|]+/, :week => /[0-9|]+/}, :as => :projects
   end
 
+  get 'timesheets/new_multiple' => 'timesheets#new_multiple', :as => :new_multiple_timesheets
+  post 'timesheets/create_multiple' => 'timesheets#create_multiple', :as => :create_multiple_timesheets
   resources :timesheets
   match 'timesheets/cw/:year/:week' => 'timesheets#weekly', :via => :get, :as => :weekly_timesheets
 

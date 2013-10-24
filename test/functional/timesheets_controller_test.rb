@@ -37,6 +37,25 @@ class TimesheetsControllerTest < ActionController::TestCase
     assert_redirected_to timesheet_path(assigns(:timesheet))
   end
 
+  test "should create multiple timesheets" do
+    entry = entries(:completeDay)
+    assert_difference('Timesheet.count', 3) do
+      assert_difference('Entry.count', 3) do
+        post :create_multiple, { :start_date => '2013-10-24',
+                                 :end_date => '2013-10-28',
+                                 :timesheet => {
+                                    end_time: @timesheet.end_time,
+                                    lunch_break: @timesheet.lunch_break,
+                                    start_time: @timesheet.start_time,
+                                    entries_attributes: [{task_id: entry.task_id, hours: entry.hours, description: entry.description}]
+                                 }
+                               }
+      end
+    end
+
+    assert_redirected_to action: 'weekly', year: 2013, week: 43
+  end
+
   test "should show timesheet" do
     get :show, id: @timesheet
     assert_response :success
@@ -74,6 +93,6 @@ class TimesheetsControllerTest < ActionController::TestCase
       delete :destroy, id: @timesheet
     end
 
-    assert_redirected_to weekly_timesheets_path(Date.today.year, Date.today.cweek)
+    assert_redirected_to weekly_timesheets_path(@timesheet.date.year, @timesheet.date.cweek)
   end
 end

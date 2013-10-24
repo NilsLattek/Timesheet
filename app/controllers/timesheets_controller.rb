@@ -35,6 +35,13 @@ class TimesheetsController < ApplicationController
     @timesheet.entries.build
   end
 
+  def new_multiple
+    @timesheet = Timesheet.new
+    @timesheet.date = Date.today
+    @timesheet.lunch_break = 30
+    @timesheet.entries.build
+  end
+
   # GET /timesheets/1/edit
   def edit
   end
@@ -43,6 +50,57 @@ class TimesheetsController < ApplicationController
   def create
     flash[:notice] = 'Timesheet was successfully created.' if @timesheet.save
     respond_with @timesheet
+  end
+
+  def create_multiple
+    @timesheet = Timesheet.new params[:timesheet]
+    iterator, @start_date, @end_date = nil
+    begin
+      iterator = Date.parse params[:start_date]
+      @start_date = iterator
+      @end_date = Date.parse params[:end_date]
+    rescue
+      flash[:error] = 'Invalid date'
+      render :new_multiple
+      return
+    end
+
+    if @start_date > @end_date
+      flash[:error] = 'End date cannot be before start date'
+      render :new_multiple
+      return
+    end
+
+    success = true
+    new_timesheet = nil
+    timesheet_count = 0
+
+    while iterator <= @end_date do
+      if iterator.cwday == 6 or iterator.cwday == 7
+        iterator = iterator.next_day
+        next
+      end
+
+      new_timesheet = @timesheet.dup
+      new_timesheet.user = current_user
+      @timesheet.entries.each do |entry|
+        new_timesheet.entries.push entry.dup
+      end
+      new_timesheet.date = iterator
+      success = new_timesheet.save
+      break if not success
+
+      timesheet_count += 1
+      iterator = iterator.next_day
+    end
+
+    if success
+      flash[:notice] = "#{timesheet_count} timesheets created"
+      redirect_to :action => :weekly, :year => @start_date.year, :week => @start_date.cweek
+    else
+      @timesheet = new_timesheet
+      render :new_multiple
+    end
   end
 
   # PUT /timesheets/1
@@ -54,6 +112,6 @@ class TimesheetsController < ApplicationController
   # DELETE /timesheets/1
   def destroy
     flash[:notice] = 'Timesheet was successfully deleted.' if @timesheet.destroy
-    respond_with @timesheet, :location => weekly_timesheets_path(Date.today.year, Date.today.cweek)
+    respond_with @timesheet, :location => weekly_timesheets_path(@timesheet.date.year, @timesheet.date.cweek)
   end
 end
