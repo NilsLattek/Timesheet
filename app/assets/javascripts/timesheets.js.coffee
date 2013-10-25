@@ -26,3 +26,24 @@ showHoursWorked = ->
 
 $(document).on 'change', '#timesheet_start_time, #timesheet_end_time, #timesheet_lunch_break', (event) ->
   showHoursWorked()
+
+
+task_entry_input_field_selector = 'input[name*="timesheet[entries_attributes]"][type="number"]'
+
+sumTaskHours = ->
+  sum = $(task_entry_input_field_selector)
+        .map (idx, input) ->
+          return 0 unless (input.value and input.value.length > 0)
+          return parseFloat input.value
+        .get()
+        .reduce (previous, current) ->
+          return previous + current
+        , 0
+
+  $('#entries_sum').html sum
+
+$(document).on 'change', task_entry_input_field_selector, (event) ->
+  sumTaskHours()
+
+$(document).on 'cocoon:after-remove', '#new_timesheet', ->
+  sumTaskHours()

@@ -30,6 +30,9 @@
     <%= f.label :hours_worked, :class => 'control-label' %>
     <div class="controls">
       <span id="hours_worked" class="uneditable-input"><%= @timesheet.hours_worked %></span>
+      <div class="input-prepend">
+        <span class="add-on">Task Sum</span><span id="entries_sum" class="uneditable-input input-mini"><%= @timesheet.hours_worked %></span>
+      </div>
     </div>
   </div>
 
