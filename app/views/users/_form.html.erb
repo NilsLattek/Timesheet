@@ -55,18 +55,18 @@
   <div class="control-group">
     <%= f.label :projects, :class => 'control-label' %>
     <div class="controls">
+      <%= f.collection_select :project_ids,
+                              Project.order('name'),
+                              :id,
+                              :name,
+                              {disabled: lambda{|project| !project.can_remove_project_from_user(@user) }},
+                              {:multiple => true, :class => 'input-xxlarge'} %>
+
       <% for project in Project.order('name') %>
-        <label class="checkbox">
-          <% if project.can_remove_project_from_user(@user) %>
-            <%= check_box_tag "user[project_ids][]", project.id, @user.projects.include?(project) %>
-          <% else %>
-            <%= check_box_tag "user[project_ids][]", project.id, @user.projects.include?(project), :disabled => true %>
+          <% if not project.can_remove_project_from_user(@user) %>
             <%= hidden_field_tag "user[project_ids][]", project.id %>
           <% end %>
-          <%= project.name %>
-        </label>
       <% end %>
-      <%= hidden_field_tag "user[project_ids][]", "" %>
     </div>
   </div>
 

@@ -15,5 +15,6 @@
 //= require bootstrap-dropdown
 //= require bootstrap-tooltip
 //= require bootstrap-collapse
+//= require chosen
 //= require_tree .
 //= require cocoon
