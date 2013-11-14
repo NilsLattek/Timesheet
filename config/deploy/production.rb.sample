@@ -1,68 +1,51 @@
-# RVM bootstrap
-#ENV['rvm_path']||="~/.rvm"
-#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require 'capistrano'
-set :rvm_type, :system
-set :rvm_ruby_string, '1.9.3-p194'
+set :stage, :production
 
-# bundler bootstrap
-require 'bundler/capistrano'
-
-# main details
-set :application, 'timesheet'
-set :domain, 'APPLICATION_URL'
-set :user, 'USERNAME'
-
-# roles (servers)
-role :web, domain
-role :app, domain
-role :db,  domain, :primary => true
-
-# server details
-default_run_options[:pty] = true
-#ssh_options[:keys] = %w(~/.ssh/id_rsa.pub)
-ssh_options[:forward_agent] = true
-set :deploy_to, '/var/www/timesheet'
 set :rails_env, 'production'
-set :deploy_via, :remote_cache
-set :use_sudo, false
 
-# repo details
-set :scm, :git
-set :scm_username, "USERNAME"
-set :repository, "git@github.com:NilsLattek/Timesheet.git"
-set :branch, "master"
-set :git_enable_submodules, 1
+# set :rvm_type, :system
+# set :rvm_ruby_version, '2.0.0-p247'
 
-# tasks
-namespace :deploy do
-  task :start, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
-  end
+# Simple Role Syntax
+# ==================
+# Supports bulk-adding hosts to roles, the primary
+# server in each group is considered to be the first
+# unless any hosts have the primary property set.
+# role :app, %w{deploy@example.com}
+# role :web, %w{deploy@example.com}
+# role :db,  %w{deploy@example.com}
 
-  task :stop, :roles => :app do
-    # Do nothing.
-  end
+# Extended Server Syntax
+# ======================
+# This can be used to drop a more detailed server
+# definition into the server list. The second argument
+# something that quacks like a hash can be used to set
+# extended properties on the server.
+server 'APPLICATION_URL', user: 'USERNAME', roles: %w{web app db assets}#, my_property: :my_value
 
-  desc "Restart Application"
-  task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
-  end
+# you can set custom ssh options
+# it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
+# you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
+# set it globally
+#  set :ssh_options, {
+#    keys: %w(/home/rlisowski/.ssh/id_rsa),
+#    forward_agent: false,
+#    auth_methods: %w(password)
+#  }
+# and/or per server
+# server 'example.com',
+#   user: 'user_name',
+#   roles: %w{web app},
+#   ssh_options: {
+#     user: 'user_name', # overrides user setting above
+#     keys: %w(/home/user_name/.ssh/id_rsa),
+#     forward_agent: false,
+#     auth_methods: %w(publickey password)
+#     # password: 'please use keys'
+#   }
+# setting per server overrides global ssh_options
 
-  desc "Symlinks the database.yml"
-  task :symlink_db, :roles => :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
+# fetch(:default_env).merge!(rails_env: :production)
 
-  desc "Symlinks the timesheet print template"
-  task :symlink_print_template, :roles => :app do
-    run "ln -nfs #{shared_path}/templates/index.print.erb #{release_path}/app/views/timesheets/index.print.erb"
-  end
-
-  desc "Symlinks the company logo"
-  task :symlink_logo, :roles => :app do
-    run "ln -nfs #{shared_path}/templates/logo.png #{release_path}/app/assets/images/logo.png"
-  end
-end
-
-before 'deploy:assets:precompile', 'deploy:symlink_db', 'deploy:symlink_print_template', 'deploy:symlink_logo'
+set :ssh_options, {
+  forward_agent: true
+}

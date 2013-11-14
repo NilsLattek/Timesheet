@@ -24,7 +24,12 @@ gem 'jbuilder'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', '~> 2.15.5', group: :development
+group :development do
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rails', '~> 1.0.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
