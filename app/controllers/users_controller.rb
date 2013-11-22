@@ -71,8 +71,7 @@ class UsersController < ApplicationController
     users.each do |user|
       @weeks.each do |week|
         hours_in_week = phs.select { |row| row.week == week and row.user_id == user.id }
-        hours_in_week = hours_in_week.length > 0 ? hours_in_week[0].hours.to_f / user.working_hours * 100 : 0
-        hours_in_week = hours_in_week.round 2
+        hours_in_week = hours_in_week.length > 0 ? hours_in_week[0].hours.to_f : 0
 
         ph = @planned_hours.select { |row| row[:user] == user }
 

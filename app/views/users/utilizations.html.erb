@@ -19,7 +19,7 @@
            title="<% ph[:user].planned_hours_by_project_in_week(utilization[:week]).each do |otherPlannedHours| %>
                     <%= otherPlannedHours.name %>: <%= format_hours otherPlannedHours.hours %><br />
                   <% end %>">
-          <span class="badge <%= if utilization[:hours] == 100 then 'badge-success' elsif utilization[:hours] > 100 then 'badge-warning' end %>"><%= utilization[:hours] %>%</span>
+          <span class="badge <%= if utilization[:hours] == ph[:user].working_hours then 'badge-success' elsif utilization[:hours] > ph[:user].working_hours then 'badge-warning' end %>"><%= format_hours utilization[:hours] %> of <%= format_hours ph[:user].working_hours %></span>
         </span>
       </td>
     <% end %>
