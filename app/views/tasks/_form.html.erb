@@ -1,7 +1,7 @@
 <%= form_for @task, :url => url,
                     :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_messages %>
-  
+
   <div class="control-group">
     <%= f.label :project_name, :class => 'control-label' %>
     <div class="controls">
@@ -24,6 +24,13 @@
     <%= f.label :estimated_effort, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :estimated_effort, :class => 'number_field', :step => 'any' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :finished, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :finished, :class => 'check_box' %>
     </div>
   </div>
 

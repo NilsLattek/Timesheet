@@ -1,22 +1,44 @@
 <%- model_class = @task.class -%>
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
-<p>
-  <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
-  <%= @task.name %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:project_id) %>:</strong><br>
-  <%= @task.project.name %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
-  <%= @task.estimated_effort %>
-</p>
-<p>
-  <strong><%= model_class.human_attribute_name(:actual_hours) %>:</strong><br>
-  <%= @task.actual_hours %>
-</p>
+<div class="row">
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
+      <%= @task.name %>
+    </p>
+  </div>
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:project_id) %>:</strong><br>
+      <%= @task.project.name %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
+      <%= @task.estimated_effort %>
+    </p>
+  </div>
+  <div class="span6">
+    <p>
+      <strong><%= model_class.human_attribute_name(:actual_hours) %>:</strong><br>
+      <%= @task.actual_hours %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>
+      <strong><%= model_class.human_attribute_name(:finished) %>:</strong><br>
+      <%=t @task.finished?.to_s %>
+    </p>
+  </div>
+</div>
 
 <p>
 <strong><%=t '.title', :default => Entry.new.class.model_name.human.pluralize %>:</strong>

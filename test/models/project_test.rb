@@ -72,4 +72,15 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal 5, result[user.id][5.days.ago.to_date.cweek]
     assert_equal 15, result[user.id][20.days.ago.to_date.cweek]
   end
+
+  test "active_tasks should return only tasks which are not finished" do
+    project = projects(:MyProject)
+    assert_equal 2, project.active_tasks.count
+
+    task = project.tasks.first
+    task.finished = true
+    task.save
+
+    assert_equal 1, project.active_tasks.count
+  end
 end

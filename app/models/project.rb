@@ -30,6 +30,10 @@ class Project < ActiveRecord::Base
     PlannedHour.where(assignment_id: Assignment.select("id").where(project_id: self.id)).sum(:hours).to_f
   end
 
+  def active_tasks
+    tasks.select { |t| !t.finished }
+  end
+
   def self.find_for_user_by_week user, week
     sql = "SELECT p.id, p.name, SUM(e.hours) AS hours
            FROM projects p LEFT JOIN tasks t
