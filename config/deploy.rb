@@ -59,6 +59,8 @@ namespace :deploy do
 
   after :finishing, 'deploy:cleanup'
 
-  before :compile_assets, 'deploy:symlink_db', 'deploy:symlink_print_template', 'deploy:symlink_logo'
+  before :compile_assets, 'deploy:symlink_db'
+  before :compile_assets, 'deploy:symlink_print_template'
+  before :compile_assets, 'deploy:symlink_logo'
 
 end
