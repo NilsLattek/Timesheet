@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    @hours_per_week = Entry.hours_per_week_for_user(@user).order('WEEK(date) DESC').paginate(:page => params[:page], :per_page => 7)
+    @hours_per_week = Entry.hours_per_week_for_user(@user).order('YEARWEEK(date) DESC').paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /users/new
