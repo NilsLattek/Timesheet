@@ -13,6 +13,6 @@ class Entry < ActiveRecord::Base
   end
 
   def self.hours_per_week_for_user user
-    Entry.select(%{ SUM(hours) AS hours, WEEK(date, 1) AS week }).joins(:timesheet).where('timesheets.user_id = ?', user.id).group('WEEK(date, 1)')
+    Entry.select(%{ SUM(hours) AS hours, WEEK(date, 3) AS week }).joins(:timesheet).where('timesheets.user_id = ?', user.id).group('WEEK(date, 3)')
   end
 end
