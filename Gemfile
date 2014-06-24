@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
 
-gem 'sass-rails',   '~> 4.0.0'
+gem 'sass-rails',   '~> 4.0.3'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -18,17 +18,17 @@ gem 'jquery-rails'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-gem 'jbuilder'
+gem 'jbuilder', '~> 2.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
 
 # Deploy with Capistrano
 group :development do
-  gem 'capistrano', '~> 3.0'
-  gem 'capistrano-rails', '~> 1.0.0'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rvm'
+  gem 'capistrano', '~> 3.2'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-bundler', '~> 1.1'
+  gem 'capistrano-rvm', '~> 0.1'
 end
 
 # To use debugger
@@ -49,5 +49,5 @@ gem 'cancan'
 
 gem 'will_paginate'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '2.3.2.2'
 
