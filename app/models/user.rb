@@ -31,12 +31,21 @@ class User < ActiveRecord::Base
   end
 
   def planned_hours_by_project_in_week(week)
-    PlannedHour.select("projects.name, SUM(planned_hours.hours) AS hours")
+    PlannedHour.select("projects.name, projects.id AS project_id, SUM(planned_hours.hours) AS hours")
                .joins(:assignment => :project)
                .where(assignments: {user_id: self.id})
                .where("planned_hours.week >= ? AND planned_hours.week <= ?", week, week)
                .order("projects.name")
-               .group("projects.name")
+               .group("projects.name, projects.id").to_a
+  end
+
+  def actual_hours_by_project_in_week(week)
+    Entry.select("tasks.project_id, projects.name AS project_name, SUM(entries.hours) AS hours")
+         .joins(:task => :project)
+         .joins(:timesheet)
+         .where(timesheets: {user_id: self.id})
+         .where("timesheets.date >= ? AND timesheets.date <= ?", week.beginning_of_week, week.end_of_week)
+         .group("tasks.project_id").to_a
   end
 
   private

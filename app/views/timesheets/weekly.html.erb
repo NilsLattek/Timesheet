@@ -19,13 +19,13 @@
     </div>
 
     <div class="well well-small">
-      <b>Todos for this week:</b>
+      <b>Projects for this week (actual / planned):</b>
       <div>
         <table class="table">
-          <% @planned_hours.each do |ph| %>
+          <% @assigned_hours.each do |ah| %>
           <tr>
-            <td><%= ph.name %></td>
-            <td><b><%= format_hours ph.hours %></b></td>
+            <td><%= ah[:name] %></td>
+            <td class="nowrap"><b><%= format_hours ah[:actual_hours] %> / <%= format_hours ah[:planned_hours] %></b></td>
           </tr>
           <% end %>
         </table>

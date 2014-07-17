@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  include DateHelper
+
   test "inactive users are not allowed to login" do
     inactive_user = User.new({ :active => false })
     assert !inactive_user.active_for_authentication?
@@ -30,5 +32,23 @@ class UserTest < ActiveSupport::TestCase
   test "load all developers" do
     developers = User.developer
     assert_equal 1, developers.length
+  end
+
+  test "actual_hours_by_project_in_week" do
+    user = users(:user)
+    ahs = user.actual_hours_by_project_in_week(thursday_of_week(5.days.ago.to_date))
+    assert_equal 2, ahs.length
+
+    project1 = projects(:FinishedProject)
+    project2 = projects(:MyProject)
+
+    p1_index = ahs.index { |ah| ah.project_id == project1.id }
+    p2_index = ahs.index { |ah| ah.project_id == project2.id }
+
+    assert_not_nil p1_index
+    assert_not_nil p2_index
+
+    assert_equal 3, ahs[p1_index].hours
+    assert_equal 5, ahs[p2_index].hours
   end
 end

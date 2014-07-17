@@ -16,7 +16,18 @@ class TimesheetsController < ApplicationController
     @week = Date.commercial(params[:year].to_i, params[:week].to_i)
     @timesheets = @timesheets.where(:date => (@week.beginning_of_week)..(@week.end_of_week)).order('date DESC')
     @hours_worked = @timesheets.inject(0){|sum, item| sum + item.hours_worked}.round 2
-    @planned_hours = current_user.planned_hours_by_project_in_week(thursday_of_week(@week))
+
+    planned_hours = current_user.planned_hours_by_project_in_week(thursday_of_week(@week))
+    actual_hours_per_project = current_user.actual_hours_by_project_in_week(thursday_of_week(@week))
+    @assigned_hours = []
+
+    # merge arrays
+    actual_hours_per_project.each do |ah|
+      filtered = planned_hours.select { |ph| ph.project_id == ah.project_id }
+      planned_hours_for_project = if filtered.count == 0 then 0 else filtered[0].hours end
+
+      @assigned_hours << { name: ah.project_name, planned_hours: planned_hours_for_project, actual_hours: ah.hours }
+    end
 
     respond_with(@timesheets) do |format|
       format.html
