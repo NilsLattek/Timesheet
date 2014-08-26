@@ -1,18 +1,24 @@
 <%- model_class = Entry.new.class -%>
-<div class="control-group nested-fields">
-  <%= f.label :task_id, :class => 'control-label' do %>
+<div class="form-group nested-fields">
+  <%= f.label :task_id, :class => 'col-md-2 control-label' do %>
     Task (<%= link_to_remove_association "Remove", f %>)
   <% end %>
-  <div class="controls">
+  <div class="col-md-10 row controls">
     <% if f.object.editable? %>
-      <%= f.grouped_collection_select :task_id, current_user.projects.active, :active_tasks, :name, :id, :name, :prompt => true %>
-      <div class="input-prepend">
-        <span class="add-on"><%= model_class.human_attribute_name(:hours) %></span>
-        <%= f.number_field :hours, :class => 'number_field input-mini', :step => 'any' %>
+      <div class="col-md-4">
+        <%= f.grouped_collection_select(:task_id, current_user.projects.active, :active_tasks, :name, :id, :name, { :prompt => true }, { :class => "form-control pull-left" }) %>
       </div>
-      <div class="input-prepend">
-        <span class="add-on"><%= model_class.human_attribute_name(:description) %></span>
-        <%= f.text_field :description, :class => 'text_field' %>
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-addon"><%= model_class.human_attribute_name(:hours) %></span>
+          <%= f.number_field :hours, :class => 'number_field form-control', :step => 'any' %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="input-group">
+          <span class="input-group-addon"><%= model_class.human_attribute_name(:description) %></span>
+          <%= f.text_field :description, :class => 'text_field form-control' %>
+        </div>
       </div>
     <% else %>
       <%= f.object.task.project.name %> - <%= f.object.task.name %>: <%= f.object.hours %> <%= f.object.description %>

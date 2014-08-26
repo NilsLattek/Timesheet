@@ -1,18 +1,18 @@
 <%- model_class = Timesheet.new.class -%>
 <div class="row">
-  <div class="span10">
+  <div class="col-md-10">
     <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
     <%= render :partial => 'navigation' %>
   </div>
 </div>
 
 <div class="row">
-  <div class="span9">
+  <div class="col-md-9">
     <%= render :partial => 'timesheet_table' %>
   </div>
-  <div class="span3">
+  <div class="col-md-3">
     <div class="well well-small">
       <b><%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></b>
       <div>Hours worked: <%= @hours_worked %></div>
@@ -43,7 +43,7 @@
     <%= link_to 'Newer →', weekly_timesheets_path(thursday_of_week(@week.next_week).year, @week.next_week.cweek) %>
   </li>
 </ul>
-<%= link_to(weekly_timesheets_path(@week.year, @week.cweek, :format => :print), :class => 'btn', :target => "_blank") do %>
+<%= link_to(weekly_timesheets_path(@week.year, @week.cweek, :format => :print), :class => 'btn btn-default', :target => "_blank") do %>
   <i class="icon-print"></i> Print
 <% end %>
 
@@ -53,5 +53,5 @@
 
 <%= link_to t('.new_multiple'),
             new_multiple_timesheets_path,
-            :class => 'btn' %>
+            :class => 'btn btn-default' %>
 

@@ -1,50 +1,50 @@
 <%= form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_messages %>
 
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+  <div class="form-group">
+    <%= f.label :name, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :name, :class => 'text_field form-control' %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :start_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :start_date, :type => 'date' %>
+  <div class="form-group">
+    <%= f.label :start_date, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :start_date, :type => 'date', :class => "form-control" %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :end_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :end_date, :type => 'date' %>
+  <div class="form-group">
+    <%= f.label :end_date, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :end_date, :type => 'date', :class => "form-control" %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :remaining_effort, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :remaining_effort, :class => 'number_field' %>
+  <div class="form-group">
+    <%= f.label :remaining_effort, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.number_field :remaining_effort, :class => 'number_field form-control' %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :finished, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :finished, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
       <%= f.check_box :finished, :class => 'check_box' %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :users, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :users, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-5">
       <%= f.collection_select :user_ids,
                               User.active,
                               :id,
                               :username,
                               {disabled: lambda{|user| !user.can_remove_user_from_project(@project) }},
-                              {:multiple => true, :class => 'input-xxlarge'} %>
+                              {:multiple => true, :class => 'input-xxlarge form-control'} %>
 
       <% for user in User.order('username') %>
         <% if not user.can_remove_user_from_project(@project) %>
@@ -54,9 +54,10 @@
     </div>
   </div>
 
+  <br />
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                projects_path, :class => 'btn' %>
+                projects_path, :class => 'btn btn-default' %>
   </div>
 <% end %>

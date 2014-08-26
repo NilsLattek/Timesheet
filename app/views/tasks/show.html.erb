@@ -2,13 +2,13 @@
 <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     <p>
       <strong><%= model_class.human_attribute_name(:name) %>:</strong><br>
       <%= @task.name %>
     </p>
   </div>
-  <div class="span6">
+  <div class="col-md-6">
     <p>
       <strong><%= model_class.human_attribute_name(:project_id) %>:</strong><br>
       <%= @task.project.name %>
@@ -17,13 +17,13 @@
 </div>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     <p>
       <strong><%= model_class.human_attribute_name(:estimated_effort) %>:</strong><br>
       <%= @task.estimated_effort %>
     </p>
   </div>
-  <div class="span6">
+  <div class="col-md-6">
     <p>
       <strong><%= model_class.human_attribute_name(:actual_hours) %>:</strong><br>
       <%= @task.actual_hours %>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <p>
       <strong><%= model_class.human_attribute_name(:finished) %>:</strong><br>
       <%=t @task.finished?.to_s %>
@@ -47,9 +47,9 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              project_path(@task.project), :class => 'btn'  %>
+              project_path(@task.project), :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_project_task_url(@task.project, @task), :class => 'btn' %>
+              edit_project_task_url(@task.project, @task), :class => 'btn btn-default' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               project_task_path(@task.project, @task),
               :method => 'delete',

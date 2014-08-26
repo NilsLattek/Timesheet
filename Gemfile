@@ -51,5 +51,5 @@ gem 'cancan'
 
 gem 'will_paginate'
 
-gem 'bootstrap-sass', '2.3.2.2'
+gem 'bootstrap-sass', '~> 3.2.0'
 

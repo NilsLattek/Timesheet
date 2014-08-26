@@ -1,7 +1,7 @@
 <%- model_class = Timesheet.new.class -%>
 <div class="row">
-  <div class="span10"><h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1></div>
-  <div class="span2">
+  <div class="col-md-10"><h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1></div>
+  <div class="col-md-2">
     <%= render :partial => 'navigation' %>
   </div>
 </div>
@@ -9,7 +9,7 @@
 <%= render :partial => 'timesheet_table' %>
 
 <%= page_navigation_links @timesheets %>
-
+<br />
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_timesheet_path,
             :class => 'btn btn-primary' %>

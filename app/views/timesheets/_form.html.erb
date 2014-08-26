@@ -2,36 +2,40 @@
 
   <%= f.error_messages %>
 
-  <div class="control-group">
-    <%= f.label :date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :date, :type => 'date' %>
+  <div class="form-group">
+    <%= f.label :date, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :date, :type => 'date', :class => "form-control" %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :start_time, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '', :autofocus => true %>
+  <div class="form-group">
+    <%= f.label :start_time, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '', :class => "form-control", :autofocus => true %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :end_time, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :end_time, :type => 'time', :value => @timesheet.end_time ? @timesheet.end_time.strftime('%H:%M') : '' %>
+  <div class="form-group">
+    <%= f.label :end_time, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :end_time, :type => 'time', :value => @timesheet.end_time ? @timesheet.end_time.strftime('%H:%M') : '', :class => "form-control" %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :lunch_break, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :lunch_break, :class => 'number_field' %>
+  <div class="form-group">
+    <%= f.label :lunch_break, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.number_field :lunch_break, :class => 'number_field form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :hours_worked, :class => 'control-label' %>
-    <div class="controls">
-      <span id="hours_worked" class="uneditable-input"><%= @timesheet.hours_worked %></span>
-      <div class="input-prepend">
-        <span class="add-on">Task Sum</span><span id="entries_sum" class="uneditable-input input-mini"><%= @timesheet.hours_worked %></span>
+  <div class="form-group">
+    <%= f.label :hours_worked, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-8 row">
+      <div class="col-sm-2">
+        <span id="hours_worked" class="form-control col-sm-2" disabled><%= @timesheet.hours_worked %></span>
+      </div>
+      <div class="col-sm-4">
+        <span class="input-group">
+          <div class="input-group-addon">Task Sum</div><span id="entries_sum" class="form-control"><%= @timesheet.hours_worked %></span>
+        </span>
       </div>
     </div>
   </div>
@@ -39,11 +43,12 @@
   <%= f.fields_for :entries do |entry| %>
     <%= render "entry_fields", :f => entry %>
   <% end %>
-  <div class="control-group">
+  <div class="form-group">
     <%= link_to_add_association 'Add entry', f, :entries %>
   </div>
 
-  <div class="form-actions">
+  <br />
+  <div>
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 weekly_timesheets_path(Date.today.year, Date.today.cweek), :class => 'btn' %>

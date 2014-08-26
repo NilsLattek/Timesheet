@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-dropdown
-//= require bootstrap-tooltip
-//= require bootstrap-collapse
+//= require bootstrap-sprockets
 //= require chosen
 //= require_tree .
 //= require cocoon

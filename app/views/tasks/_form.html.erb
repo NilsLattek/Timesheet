@@ -2,41 +2,42 @@
                     :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_messages %>
 
-  <div class="control-group">
-    <%= f.label :project_name, :class => 'control-label' %>
-    <div class="controls">
-      <input type="text" id="project_name" value="<%= @task.project.name %>" readonly="readonly" />
+  <div class="form-group">
+    <%= f.label :project_name, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <input type="text" id="project_name" value="<%= @task.project.name %>" class="form-control" disabled />
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+  <div class="form-group">
+    <%= f.label :name, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :name, :class => 'text_field form-control' %>
     </div>
   </div>
-  <div class="control-group, hide">
-    <%= f.label :project_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :project_id, :class => 'number_field' %>
+  <div class="form-group, hide">
+    <%= f.label :project_id, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.number_field :project_id, :class => 'number_field form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :estimated_effort, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :estimated_effort, :class => 'number_field', :step => 'any' %>
+  <div class="form-group">
+    <%= f.label :estimated_effort, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.number_field :estimated_effort, :class => 'number_field form-control', :step => 'any' %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :finished, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :finished, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
       <%= f.check_box :finished, :class => 'check_box' %>
     </div>
   </div>
 
+  <br />
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                project_path(@task.project), :class => 'btn' %>
+                project_path(@task.project), :class => 'btn btn-default' %>
   </div>
 <% end %>
