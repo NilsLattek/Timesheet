@@ -5,7 +5,7 @@
   <% end %>
   <div class="col-md-10 row controls">
     <% if f.object.editable? %>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <%= f.grouped_collection_select(:task_id, current_user.projects.active, :active_tasks, :name, :id, :name, { :prompt => true }, { :class => "form-control pull-left" }) %>
       </div>
       <div class="col-md-3">
@@ -14,7 +14,7 @@
           <%= f.number_field :hours, :class => 'number_field form-control', :step => 'any' %>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div class="input-group">
           <span class="input-group-addon"><%= model_class.human_attribute_name(:description) %></span>
           <%= f.text_field :description, :class => 'text_field form-control' %>
