@@ -8,6 +8,7 @@ body { padding-top: 60px; }
   @extend .bg-danger;
   // @extend .alert;
   // @extend .alert-error;
+  @extend .alert-danger;
   // @extend .alert-block;
 
   padding: 1px 15px;
@@ -15,6 +16,11 @@ body { padding-top: 60px; }
 
   h2 {
     font-size: 18px;
+    font-weight: bold;
+  }
+
+  ul {
+    padding-left: 20px;
   }
 }
 
