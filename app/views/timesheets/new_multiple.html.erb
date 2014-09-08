@@ -10,49 +10,49 @@
 
   <%= f.text_field :date, :type => :hidden %>
 
-  <div class="control-group">
-    <%= label_tag :start_date, nil, :class => 'control-label' %>
-    <div class="controls">
-      <%= text_field_tag :start_date, @start_date, :type => 'date', :autofocus => true %>
+  <div class="form-group">
+    <%= label_tag :start_date, nil, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= text_field_tag :start_date, @start_date, :type => 'date', :autofocus => true, :class => "form-control" %>
     </div>
   </div>
-  <div class="control-group">
-    <%= label_tag :end_date, nil, :class => 'control-label' %>
-    <div class="controls">
-      <%= text_field_tag :end_date, @end_date, :type => 'date' %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :start_time, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :end_time, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :end_time, :type => 'time', :value => @timesheet.end_time ? @timesheet.end_time.strftime('%H:%M') : '' %>
+  <div class="form-group">
+    <%= label_tag :end_date, nil, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= text_field_tag :end_date, @end_date, :type => 'date', :class => "form-control" %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :lunch_break, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :lunch_break, :class => 'number_field' %>
+  <div class="form-group">
+    <%= f.label :start_time, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :start_time, :type => 'time', :value => @timesheet.start_time ? @timesheet.start_time.strftime('%H:%M') : '', :class => "form-control" %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :hours_worked, :class => 'control-label' %>
-    <div class="controls">
-      <span id="hours_worked" class="uneditable-input"><%= @timesheet.hours_worked %></span>
+  <div class="form-group">
+    <%= f.label :end_time, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.text_field :end_time, :type => 'time', :value => @timesheet.end_time ? @timesheet.end_time.strftime('%H:%M') : '', :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :lunch_break, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <%= f.number_field :lunch_break, :class => 'number_field', :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :hours_worked, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-3">
+      <span id="hours_worked" class="form-control col-sm-2" disabled><%= @timesheet.hours_worked %></span>
     </div>
   </div>
 
   <%= f.fields_for :entries do |entry| %>
     <%= render "entry_fields", :f => entry %>
   <% end %>
-  <div class="control-group">
+  <div class="form-group">
     <%= link_to_add_association 'Add entry', f, :entries %>
   </div>
 
