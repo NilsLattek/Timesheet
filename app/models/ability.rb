@@ -36,8 +36,8 @@ class Ability
 
     can :manage, Timesheet, :user_id => user.id
     # users can only edit their timesheets of the last 14 days
-    cannot [:update, :destroy], Timesheet do |timesheet|
-      timesheet.date <= 15.days.ago.to_date
-    end
+    # cannot [:update, :destroy], Timesheet do |timesheet|
+    #   timesheet.date <= 15.days.ago.to_date
+    # end
   end
 end
