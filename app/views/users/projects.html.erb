@@ -1,10 +1,10 @@
 <ul class="pager">
   <li class="previous">
-    <%= link_to '← Older', user_projects_path(@user, @week.prev_week.year, @week.prev_week.cweek) %>
+    <%= link_to '← Older', user_projects_path(@user, @week.prev_week(:thursday).year, @week.prev_week(:thursday).cweek) %>
   </li>
   <li><b><%= @user.username %>: <%=l @week.beginning_of_week %> - <%=l @week.end_of_week %></b></li>
   <li class="next">
-    <%= link_to 'Newer →', user_projects_path(@user, @week.next_week.year, @week.next_week.cweek) %>
+    <%= link_to 'Newer →', user_projects_path(@user, @week.next_week(:thursday).year, @week.next_week(:thursday).cweek) %>
   </li>
 </ul>
 
