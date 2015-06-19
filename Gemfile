@@ -31,6 +31,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-bundler', '~> 1.1'
   gem 'capistrano-rvm', '~> 0.1'
+  gem 'capistrano-rbenv', '~> 2.0'
 end
 
 # To use debugger
@@ -53,3 +54,7 @@ gem 'will_paginate'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 
+
+# fix nodejs require bug on server
+gem 'execjs'
+gem 'therubyracer'
