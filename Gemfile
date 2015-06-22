@@ -54,6 +54,7 @@ gem 'will_paginate'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 
+require 'csv'
 
 # fix nodejs require bug on server
 gem 'execjs'

@@ -29,3 +29,21 @@ testingEntry:
   task: TaskTesting
   timesheet: employeeTimesheet2
   description: Testing
+
+task1Entry:
+  hours: 3.5
+  task: AnotherTask1
+  timesheet: employeeTimesheet3
+  description: T1
+
+task1bEntry:
+  hours: 7
+  task: AnotherTask1
+  timesheet: employeeTimesheet3
+  description: T1b
+
+task2Entry:
+  hours: 4.25
+  task: AnotherTask2
+  timesheet: employeeTimesheet3
+  description: T2

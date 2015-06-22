@@ -72,6 +72,21 @@ class ProjectsController < ApplicationController
     render :planning
   end
 
+  def entries
+    entries = @project.all_entries
+
+    csv = CSV.generate({:col_sep => ";"}) do |csv|
+      csv << ['User', 'Date', 'Hours', 'Description']
+      entries.each do |entry|
+        csv << [entry.timesheet.user.username, l(entry.timesheet.date), entry.hours, entry.description]
+      end
+    end
+
+    respond_to do |format|
+      format.csv { send_data csv }
+    end
+  end
+
   private
 
   def prepare_planning

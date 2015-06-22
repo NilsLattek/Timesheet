@@ -78,6 +78,7 @@
               projects_path, :class => 'btn btn-default'  %>
   <%= link_to t('.planning', :default => t("helpers.links.planning")),
                       planning_project_path(@project, Date.today.strftime('%Y-%m')), :class => 'btn btn-default' %>
+  <%= link_to t('.export', :default => t("helpers.links.export")), project_entries_path(@project, format: 'csv'), :class => 'btn btn-default' %>
   <%= link_to "Add task", new_project_task_url(@project), :class => 'btn btn-primary' %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_path(@project), :class => 'btn btn-default' %>

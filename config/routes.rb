@@ -19,6 +19,7 @@ Timesheets::Application.routes.draw do
   end
   get 'projects/:id/planning/:month' => 'projects#planning', :as => :planning_project
   post 'projects/:id/planning/:month' => 'projects#save_planning'
+  get 'projects/:id/entries' => 'projects#entries', :as => :project_entries
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

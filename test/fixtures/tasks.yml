@@ -14,3 +14,13 @@ FinishedProjectTask:
   name: Finished task
   project: FinishedProject
   estimated_effort: 5
+
+AnotherTask1:
+  name: Task1
+  project: ProjectForExport
+  estimated_effort: 5
+
+AnotherTask2:
+  name: Task2
+  project: ProjectForExport
+  estimated_effort: 5

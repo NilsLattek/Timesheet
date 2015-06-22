@@ -83,4 +83,12 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal 1, project.active_tasks.count
   end
+
+  test "all_entries returns all timesheet entries for all tasks" do
+    project = projects(:ProjectForExport)
+    entries = project.all_entries
+    assert_equal 3, entries.count
+    assert_equal 3.5, entries[0].hours.to_f
+    assert_equal 'T1', entries[0].description
+  end
 end

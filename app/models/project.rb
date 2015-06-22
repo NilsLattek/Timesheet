@@ -70,6 +70,19 @@ class Project < ActiveRecord::Base
     hours == 0
   end
 
+  def all_entries
+    entries = []
+    tasks.each do |task|
+      task.entries.each do |entry|
+        entries.push entry
+      end
+    end
+
+    entries.sort { |e1, e2|
+      e1.timesheet.date <=> e2.timesheet.date
+    }
+  end
+
   private
 
   def before_user_removal(user)

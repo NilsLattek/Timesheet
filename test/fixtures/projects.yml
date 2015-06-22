@@ -12,3 +12,7 @@ NotUsedProject:
 FinishedProject:
   name: Finished Project
   finished: true
+
+ProjectForExport:
+  name: ExportProject
+  finished: true
