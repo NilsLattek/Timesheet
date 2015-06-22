@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   include DateHelper
+  include ActionView::Helpers::NumberHelper
 
   load_and_authorize_resource
 
@@ -78,7 +79,7 @@ class ProjectsController < ApplicationController
     csv = CSV.generate({:col_sep => ";"}) do |csv|
       csv << ['User', 'Date', 'Hours', 'Description']
       entries.each do |entry|
-        csv << [entry.timesheet.user.username, l(entry.timesheet.date), entry.hours, entry.description]
+        csv << [entry.timesheet.user.username, l(entry.timesheet.date), number_with_delimiter(entry.hours, separator: ','), entry.description]
       end
     end
 
