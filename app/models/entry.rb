@@ -9,7 +9,7 @@ class Entry < ActiveRecord::Base
     # new entry, not assigned to any task
     return true if not task.present?
 
-    !task.project.finished
+    !task.project.finished && !task.finished
   end
 
   def self.hours_per_week_for_user user

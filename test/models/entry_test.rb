@@ -15,6 +15,14 @@ class EntryTest < ActiveSupport::TestCase
     assert !entry.editable?
   end
 
+  test "should not allow editing if the task is finished" do
+    task = tasks(:TaskDevelopment)
+    task.finished = true
+    entry = Entry.new
+    entry.task = task
+    assert !entry.editable?
+  end
+
   test "should not allow negative hours" do
     entry = entries(:activeEntry)
     entry.hours = -4
